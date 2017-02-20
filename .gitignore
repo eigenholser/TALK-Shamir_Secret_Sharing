@@ -1,4 +1,5 @@
-reveal.js/figures/gnuplot/*
+reveal.js/figures/gnuplot/*.png
+figures/gnuplot/*png
 .idea/
 *.iml
 *.iws
