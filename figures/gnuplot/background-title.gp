@@ -4,7 +4,7 @@ set terminal png transparent nointerlace \
     noenhanced \
     background '#FFFFFF'
 
-set output "intro.png"
+set output "background-title.png"
 set encoding utf8
 
 set style line 101 linetype 1 linewidth 5 linecolor rgbcolor '#000000'
