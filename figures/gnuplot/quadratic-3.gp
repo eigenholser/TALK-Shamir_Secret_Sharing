@@ -1,6 +1,6 @@
 set terminal png notransparent nointerlace \
     font "lucon.ttf,20" \
-    size 2048,1536 nocrop \
+    size 1920,1080 nocrop \
     noenhanced \
     background '#FFFFFF'
 
