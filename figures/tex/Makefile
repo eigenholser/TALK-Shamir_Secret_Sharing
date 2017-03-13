@@ -22,6 +22,7 @@ tidylist= for x in $(wildcard *.dvi) $(wildcard *.aux) \
 
 %.dvi : %.tex
 	@latex $< > /dev/null 2>&1
+	@latex $< > /dev/null 2>&1
 
 %.ps : %.dvi
 	@dvips $< > /dev/null 2>&1
