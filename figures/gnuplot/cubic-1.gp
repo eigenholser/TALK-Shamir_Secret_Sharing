@@ -61,11 +61,11 @@ plot \
     (34.0*(x**3 + x**2 - 26.0*x + 24) + 2.0*x**2 + 13.0*x + 18) axes x1y1 not with lines linestyle 102, \
     f(x) axes x1y1 not with lines linestyle 102, \
     '+' using ($0 == 0 ? x1 : NaN):(f(x1)):(sprintf('(%.1d,%.1d)', x1, f(x1))) \
-    with labels offset char -2,2.5 left textcolor rgb 'blue' \
+    with labels offset char -2.6,3.5 left textcolor rgb 'blue' \
     point linestyle 1 notitle, \
     '+' using ($0 == 0 ? x2 : NaN):(f(x2)):(sprintf('(%.1d,%.1d)', x2, f(x2))) \
-    with labels offset char -4.0,3 left textcolor rgb 'blue' \
+    with labels offset char -2.5,1.5 left textcolor rgb 'blue' \
     point linestyle 1 notitle, \
     '+' using ($0 == 0 ? x3 : NaN):(f(x3)):(sprintf('(%.1d,%.1d)', x3, f(x3))) \
-    with labels offset char -4.0,3 left textcolor rgb 'blue' \
+    with labels offset char -3.0,2.0 left textcolor rgb 'blue' \
     point linestyle 1 notitle
