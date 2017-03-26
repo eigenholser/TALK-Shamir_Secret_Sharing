@@ -60,5 +60,5 @@ plot \
     (89.0*(x + 17) - 26) axes x1y1 not with lines linestyle 102, \
     f(x) axes x1y1 not with lines linestyle 102, \
     '+' using ($0 == 0 ? x1 : NaN):(f(x1)):(sprintf('(%.1d,%.1d)', x1, f(x1))) \
-    with labels offset char -2,2.5 left textcolor rgb 'blue' \
+    with labels offset char -3,2 left textcolor rgb 'blue' \
     point linestyle 1 notitle
