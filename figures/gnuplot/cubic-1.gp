@@ -1,4 +1,4 @@
-set terminal png notransparent nointerlace \
+set terminal png transparent nointerlace \
     font "lucon.ttf,20" \
     size 1920,1080 nocrop \
     noenhanced \
