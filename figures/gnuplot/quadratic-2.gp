@@ -47,6 +47,7 @@ set title "Quadratic polynomials passing through points (2,64) and (5,202)" font
 f(x) = 7.0*x**2 - 3.0*x + 42
 x1 = 2
 x2 = 5
+x3 = 3.5
 set style line 1 pointtype 7 linecolor rgb '#000000' pointsize 4
 plot \
     (-89.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
@@ -67,4 +68,7 @@ plot \
     point linestyle 1 notitle, \
     '+' using ($0 == 0 ? x2 : NaN):(f(x2)):(sprintf('(%.1d,%.1d)', x2, f(x2))) \
     with labels offset char -4.0,3.0 left textcolor rgb 'blue' \
+    point linestyle 1 notitle, \
+    '+' using ($0 == 0 ? x3 : NaN):(f(x3)):(sprintf('(%.1d,%.1d)', x3, f(x3))) \
+    with labels offset char -1.0,0.5 left textcolor rgb 'blue' \
     point linestyle 1 notitle
