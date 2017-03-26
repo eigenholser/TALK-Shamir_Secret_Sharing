@@ -46,6 +46,7 @@ set title "Linear polynomials passing through point (-17,-26)" font "lucon.ttf,3
 # Greek α symbol is U03B1
 f(x) = 4.0*x + 42
 x1 = -17
+x2 = -15
 set style line 1 pointtype 7 linecolor rgb '#000000' pointsize 4
 plot \
     (-89.0*(x + 17) - 26) axes x1y1 not with lines linestyle 102, \
@@ -60,5 +61,9 @@ plot \
     (89.0*(x + 17) - 26) axes x1y1 not with lines linestyle 102, \
     f(x) axes x1y1 not with lines linestyle 106, \
     '+' using ($0 == 0 ? x1 : NaN):(f(x1)):(sprintf('(%.1d,%.1d)', x1, f(x1))) \
-    with labels offset char -2,2.5 left textcolor rgb 'blue' \
+    with labels offset char -3,2 left textcolor rgb 'blue' \
+    point linestyle 1 notitle, \
+    '+' using ($0 == 0 ? x2 : NaN):(f(x2)):(sprintf('(%.1d,%.1d)', x2, f(x2))) \
+    with labels offset char 1,-1.2 left textcolor rgb 'blue' \
     point linestyle 1 notitle
+
