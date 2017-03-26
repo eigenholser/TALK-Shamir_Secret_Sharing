@@ -48,6 +48,7 @@ f(x) = x**3 + 3*x**2 - 13.0*x + 42
 x1 = -6
 x2 = 1
 x3 = 4
+x4 = -3
 set style line 1 pointtype 7 linecolor rgb '#000000' pointsize 4
 plot \
     (-34.0*(x**3 + x**2 - 26.0*x + 24) + 2.0*x**2 + 13.0*x + 18) axes x1y1 not with lines linestyle 102, \
@@ -67,5 +68,8 @@ plot \
     with labels offset char -4.0,3 left textcolor rgb 'blue' \
     point linestyle 1 notitle, \
     '+' using ($0 == 0 ? x3 : NaN):(f(x3)):(sprintf('(%.1d,%.1d)', x3, f(x3))) \
-    with labels offset char -4.0,3 left textcolor rgb 'blue' \
+    with labels offset char -3.0,2.0 left textcolor rgb 'blue' \
+    point linestyle 1 notitle, \
+    '+' using ($0 == 0 ? x4 : NaN):(f(x4)):(sprintf('(%.1d,%.1d)', x4, f(x4))) \
+    with labels offset char -2.5,0.75 left textcolor rgb 'blue' \
     point linestyle 1 notitle
