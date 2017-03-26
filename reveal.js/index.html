@@ -38,13 +38,100 @@
 					<h1>Sharing</h1>
 				</section>
 
+				<!-- Shamir Secret Sharing Definition -->
+				<section>
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h3>Mathematical Definition</h3>
+						<p align="left">Divide secret $S$ into $n$ pieces of data $S_i,\ldots,S_n$ such that</p>
+						<ul>
+							<li>Knowledge of any $k$ or more $S_i$ makes $S$ computable.</li>
+							<li>Knowledge of any $k-1$ or less $S_i$ leaves $S$ completely undetermined.</li>
+						</ul>
+						<p align="left">This is called $(k,n)$ threshold scheme.</p>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h3>Shamir Secret Sharing</h3>
+						<p align="left">The essential idea is that $k$ points are required to define a polynomial of degree $k-1$.</p>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h3>Shamir Secret Sharing</h3>
+						Definition of polynomial:
+						<script type="math/tex" mode="display">
+							f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \\
+							f(x) = \sum_{i=0}^{k-1} a_ix^i
+						</script>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h3>Shamir Secret Sharing</h3>
+						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $F$ of size $P$ where $0 < k \leq n < P$ and $P$ is a prime number.</p>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h3>Shamir Secret Sharing</h3>
+						<ul>
+							<li>Choose at random $k-1$ positive integers $a_1,\ldots,a_{k-1}$ with $a_i&lt;P$ and let $a_0 = S$.</li>
+							<li>Build the polynomial $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1}$</li>
+							<li>Construct any $n$ points, for instance, set $i=1,\ldots,n$ to retrieve $(i,f(i))$</li>
+						</ul>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h3>Shamir Secret Sharing</h3>
+						<ul>
+							<li>Every participant is given a point, i.e. an integer input to the polynomial and the corresponding integer output.</li>
+							<li>Given any subset of $k$ of these pairs, we can find the coefficients of the polynomial. The secret is the constant term $a_0$</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<!--
+				-->
+				<section>
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h1>Examples</h1>
+						<p align="left">Suppose we have $j$ shares $S_1,\ldots,S_j$, where $j &lt; k$.</p>
+					</section>
+
+					<section data-background="figures/gnuplot/linear-1.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/linear-2.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/quadratic-1.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/quadratic-2.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/cubic-1.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/cubic-2.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+				</section>
+
 				<!--
 						Example of a straight line: f(x) = 4x + 42
 						Solve for the polynomial and the secret.
 				-->
 				<section>
-					<section data-transition="fade-out">
-						A straight line is described by the polynomial $f(x) = ax^2 + b$
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h2>Example</h2>
+						<p align="left">A straight line is described by the polynomial</p>
+						<p>$f(x) = ax + b$</p>
+
 						<aside class="notes">
 							<p>First degree polynomial.</p>
 							<p>How many points are necessary to describe a line?</p>
@@ -52,11 +139,8 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/line.png" data-background-size="contain">
-					</section>
-
-					<section data-transition="fade-in">
-						Suppose we know two points:
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<p align="left">Suppose we know two points:</p>
 						\[\begin{align}
 						P1 &amp;= (-16, -22) \\
 						P2 &amp;= (-17, -26) \\
@@ -66,8 +150,12 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain">
-						We can write the system of equations:
+					<section data-background="figures/gnuplot/line.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<p align="left">We can write the system of equations:</p>
 						\[\begin{align}
 						f(-16) = -22 &amp;= a(-16) + b \\
 						f(-17) = -26 &amp;= a(-17) + b \\
@@ -79,15 +167,16 @@
 						</aside>
 					</section>
 
-					<section>
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<p align="left">We can solve the equations for $b$:</p>
 						\[b = 16a - 22\]
 						<aside class="notes">
 							<p>Substite $b$ into the second equation.</p>
 						</aside>
 					</section>
 
-					<section>
-						Substituting $b$ into the second equation and simplifying
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<p align="left">Substituting $b$ into the second equation and simplifying:</p>
 						\[\begin{align}
 						-26 &amp;= -17a + (16a - 22) \\
 						    &amp;= -a - 22 \\
@@ -96,7 +185,7 @@
 						\end{align}\]
 					</section>
 
-					<section>
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						Now that we know $a = 4$ we can find our secret, $b$
 						\[\begin{align}
 						b &amp;= 16a - 22 \\
@@ -105,6 +194,7 @@
 						b &amp;= 42 \\
 						\end{align}\]
 					</section>
+
 				</section>
 
 				<!--
@@ -116,18 +206,6 @@
 
 					<section>
 					</section>
-				</section>
-
-				<section data-transition="slide-out">
-					<script type="math/tex" mode="display">
-f(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_2 x^2 + a_1 x + a_0
-					</script>
-				</section>
-
-				<section>
-					<script type="math/tex" mode="display">
-						f(x) = \sum_{k=0}^n a_k x^k
-					</script>
 				</section>
 
 				<section data-background="images/clock.png" data-background-size="contain">
