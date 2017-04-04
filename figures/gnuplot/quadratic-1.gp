@@ -39,28 +39,28 @@ set ylabel "f(x)" font "lucon.ttf,30"
 #set y2tics nomirror
 set label 1 "2005-2017 © eigenholser" \
     at screen 0.99,0.014 right font "times.ttf,12"
-set label 2 "f(x) = 7x^2 - 3x + 42" at screen 0.21,0.865 left font "times.ttf,30"
-set label 3 "f(x) = α(x^2 - 7x + 10) + 46x - 28" at screen 0.21,0.830 left font "times.ttf,30"
-set title "Quadratic polynomials passing through points (2,64) and (5,202)" font "lucon.ttf,30"
+set label 2 "f(x) = 7x^2 + 3x + 42" at screen 0.21,0.865 left font "times.ttf,30"
+set label 3 "f(x) = α(x^2 - 7x + 10) + 52x - 28" at screen 0.21,0.830 left font "times.ttf,30"
+set title "Quadratic polynomials passing through points (2,76) and (5,232)" font "lucon.ttf,30"
 
 # Greek α symbol is U03B1
-f(x) = 7.0*x**2 - 3.0*x + 42
+f(x) = 7.0*x**2 + 3.0*x + 42
 x1 = 2
 x2 = 5
 set style line 1 pointtype 7 linecolor rgb '#000000' pointsize 4
 plot \
-    (-89.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (-55.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (-34.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (-21.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (-8.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (13.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (21.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (34.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (55.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (89.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (120.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
-    (144.0*(x**2 - 7.0*x + 10.0) + 46.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (-89.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (-55.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (-34.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (-21.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (-8.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (13.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (21.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (34.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (55.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (89.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (120.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
+    (144.0*(x**2 - 7.0*x + 10.0) + 52.0*x - 28.0) axes x1y1 not with lines linestyle 102, \
     f(x) axes x1y1 not with lines linestyle 102, \
     '+' using ($0 == 0 ? x1 : NaN):(f(x1)):(sprintf('(%.1d,%.1d)', x1, f(x1))) \
     with labels offset char -2,2.5 left textcolor rgb 'blue' \
