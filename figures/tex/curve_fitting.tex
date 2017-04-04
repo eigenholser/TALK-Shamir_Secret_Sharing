@@ -76,10 +76,10 @@ A second degree, or quadratic, polynomial is represented as
 
 \noindent
 Given a secret $S = 42$, we can choose random values for $a$ and $b$. Suppose
-we choose $a = 7$ and $b = -3$. We may then write
+we choose $a = 7$ and $b = 3$. We may then write
 
 \begin{align}
-    f(x) &= 7x^2 - 3x + 42 \label{eq5}
+    f(x) &= 7x^2 + 3x + 42 \label{eq5}
 \end{align}
 
 \noindent
@@ -88,7 +88,7 @@ points, we want to find all quadratic curves that pass through the two given
 points.\\
 
 \noindent
-Suppose we have points $P_1 = (2, 64)$ and $P_2 = (5, 202)$ discovered by choosing
+Suppose we have points $P_1 = (2, 76)$ and $P_2 = (5, 232)$ discovered by choosing
 two $x$ values randomly and solving equation \ref{eq5} for $f(x)$. We may find
 the equation describing all curves passing through $P_1$ and $P_2$ by solving
 the system of equations as we did in the case of the linear polynomial.\\
@@ -98,8 +98,8 @@ Substitutine $P_1$ and $P_2$ into equation \ref{eq4} we can write
 
 \begin{align}
     f(2) &= 4a + 2b + c \nonumber \\
-    64   &= 4a + 2b + c \nonumber \\
-    c    &= -4a - 2b + 64 \label{eq6}
+    76   &= 4a + 2b + c \nonumber \\
+    c    &= -4a - 2b + 76 \label{eq6}
 \end{align}
 
 \noindent
@@ -107,8 +107,8 @@ and
 
 \begin{align}
     f(5) &= 25a + 5b + c \nonumber \\
-    202  &= 25a + 5b + c \nonumber \\
-    c    &= -25a - 5b + 202 \label{eq7}
+    232  &= 25a + 5b + c \nonumber \\
+    c    &= -25a - 5b + 232 \label{eq7}
 \end{align}
 
 \noindent
@@ -116,18 +116,18 @@ Since we know equations \ref{eq6} and \ref{eq7} are equal, we can solve for $b$
 in terms of $a$ as follows:
 
 \begin{align}
-    -4a - 2b + 64 &= -25a - 5b + 202 \nonumber \\
-    5b - 2b       &= 202 - 64 + 4a - 25a \nonumber \\
-    3b            &= -21a + 138 \nonumber\\
-    b             &= -7a + 46 \label{eq8}
+    -4a - 2b + 76 &= -25a - 5b + 232 \nonumber \\
+    5b - 2b       &= 232 - 76 + 4a - 25a \nonumber \\
+    3b            &= -21a + 156 \nonumber\\
+    b             &= -7a + 52 \label{eq8}
 \end{align}
 
 \noindent
 We can now substitute equation \ref{eq8} into equation \ref{eq6} to write:
 
 \begin{align}
-    c &= -25a -2(46 - 7a) + 64 \nonumber \\
-      &= 14a - 4a - 92 +64 \nonumber \\
+    c &= -4a - 2(-7a + 52) + 76 \nonumber \\
+      &= -4a + 14a - 104 + 76 \nonumber \\
     c &= 10a - 28 \label{eq9}
 \end{align}
 
@@ -136,14 +136,14 @@ Now that we have solved for both $b$ and $c$ in terms of $a$, we may rewrite
 equation \ref{eq4} as follows:
 
 \begin{align}
-    f_a(x) &= ax^2 + (-7a + 46)x + 10a - 28 \nonumber \\
-           &= ax^2 + -7ax + 46x + 10a - 28 \nonumber \\
-    f_a(x) &= a(x^2 - 7x + 10) + 46x -28 \label{eq10}
+    f_a(x) &= ax^2 + (-7a + 52)x + 10a - 28 \nonumber \\
+           &= ax^2 + -7ax + 52x + 10a - 28 \nonumber \\
+    f_a(x) &= a(x^2 - 7x + 10) + 52x - 28 \label{eq10}
 \end{align}
 
 \noindent
 Equation \ref{eq10} is the set of quadratic curves that pass through points
-$P_1 = (2, 64)$ and $P_2 = (5, 202)$.
+$P_1 = (2, 76)$ and $P_2 = (5, 232)$.
 
 
 \section{Cubic Polynomial}
@@ -157,34 +157,34 @@ A third degree, or cubic, polynomial is represented as:
 
 \noindent
 As before, our secret $S = 42$. We then select random values for $a$, $b$, and
-$c$. Suppose we have $a = 1$, $b = 3$, and $c = -13$. We may write:
+$c$. Suppose we have $a = 1$, $b = 3$, and $c = 13$. We may write:
 
 \begin{align}
-    f(x) &= x^3 + 3x^2 - 13x + 42 \label{eq12}
+    f(x) &= x^3 + 3x^2 + 13x + 42 \label{eq12}
 \end{align}
 
 \noindent
 Four points are required to identify a specific cubic equation. Suppose we have
-three points $P_1 = (-6, 12)$, $P_2 = (1, 33)$, $P_3 = (4, 102)$. We can find
+three points $P_1 = (-6, -144)$, $P_2 = (1, 59)$, $P_3 = (4, 206)$. We can find
 the set of cubic polynomials that contains each of $P_1$, $P_2$, and $P_3$ by
 solving the system of equations as before. We can write:
 
 \begin{align}
     f(-6) &= a(-6)^3 + b(-6)^2 + c(-6) + d \nonumber \\
-    12    &= -216a + 36b - 6c + d \nonumber \\
-    d     &= 216a - 36b + 6c + 12 \label{eq13}
+    -144  &= -216a + 36b - 6c + d \nonumber \\
+    d     &= 216a - 36b + 6c - 144 \label{eq13}
 \end{align}
 
 \begin{align}
     f(1) &= a + b + c + d \nonumber \\
-    33   &= a + b + c + d \nonumber \\
-    d    &= -a - b - c + 33\label{eq14}
+    59   &= a + b + c + d \nonumber \\
+    d    &= -a - b - c + 59\label{eq14}
 \end{align}
 
 \begin{align}
     f(4) &= 4^3a + 4^2b + 4c + d \nonumber \\
-    102  &= 64a + 16b + 4c + d \nonumber \\
-    d    &= -64a - 16b -4c + 102 \label{eq15}
+    206  &= 64a + 16b + 4c + d \nonumber \\
+    d    &= -64a - 16b - 4c + 206 \label{eq15}
 \end{align}
 
 \noindent
@@ -192,18 +192,18 @@ We may now represent $c$ in terms of $a$ and $b$ by simplifying the equality
 of equations \ref{eq13} and \ref{eq14}:
 
 \begin{align}
-    216a - 36b + 6c + 12 &= -a -b -c + 33 \nonumber \\
-    7c &= -217a + 35b + 21 \nonumber \\
-    c &= -31a + 5b + 3 \label{eq16}
+    216a - 36b + 6c - 144 &= -a -b -c + 59 \nonumber \\
+    7c &= -217a + 35b + 203 \nonumber \\
+    c &= -31a + 5b + 29 \label{eq16}
 \end{align}
 
 \noindent
 And now repeat for equations \ref{eq14} and \ref{eq15}:
 
 \begin{align}
-    -a -b -c + 33 &= -64a -16b -4c + 102 \nonumber \\
-    3c &= -63a -15b + 69 \nonumber \\
-    c &= -21a -5b + 23 \label{eq17}
+    -a - b - c + 59 &= -64a - 16b - 4c + 206 \nonumber \\
+    3c &= -63a - 15b + 147 \nonumber \\
+    c &= -21a - 5b + 49 \label{eq17}
 \end{align}
 
 \noindent
@@ -211,7 +211,7 @@ Repeating once again to solve for $b$ by simplifying the equality represented
 by the equations \ref{eq16} and \ref{eq17}:
 
 \begin{align}
-    -31a + 5b + 3 &= -21a -5b + 23 \nonumber \\
+    -31a + 5b + 29 &= -21a - 5b + 49 \nonumber \\
     10b &= 10a + 20 \nonumber \\
     b &= a + 2 \label{eq18}
 \end{align}
@@ -224,7 +224,7 @@ have an equation in terms of $a$ and $x$ only. The algebra is simple but long
 so here is the result without further ceremony:
 
 \begin{align}
-    f_a(x) &= a(x^3 + x^2 -26x + 24) + 2x^2 + 13x + 18 \label{eq19}
+    f_a(x) &= a(x^3 + x^2 - 26x + 24) + 2x^2 + 39x - 41 \label{eq19}
 \end{align}
 
 
