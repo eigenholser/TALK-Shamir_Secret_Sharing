@@ -38,7 +38,7 @@ set mytics
 set my2tics
 set ylabel "f(x)" font "lucon.ttf,30"
 set label 1 "eigenholser" at screen 1.0,0.014 right font "times.ttf,12"
-set label 2 "Linear polynomials passing through point (-17,-26)" at screen 0.10,0.900 left font "lucon.ttf,30"
+set title "Linear polynomials passing through point (-17,-26)" font "lucon.ttf,30"
 
 # Greek α symbol is U03B1
 f(x) = 4.0*x + 42
