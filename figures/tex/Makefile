@@ -33,7 +33,7 @@ tidylist= for x in $(wildcard *.dvi) $(wildcard *.aux) \
 %.png : %.pdf
 	convert -density 400 -background white -alpha remove $< $@ > /dev/null 2>&1
 
-TYPES=dvi ps pdf png
+TYPES=dvi ps pdf
 all :
 	@for item in `${alllist}`; \
 	do  \
