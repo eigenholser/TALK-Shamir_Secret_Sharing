@@ -37,9 +37,7 @@ set grid ytics
 set mytics
 set my2tics
 set ylabel "f(x)" font "lucon.ttf,30"
-set label 1 "2005-2017 © eigenholser" \
-    at screen 0.99,0.014 right font "times.ttf,12"
-#set title "Cubic polynomials passing through points (-4,50) and (1,40)" font "lucon.ttf,30"
+set label 1 "eigenholser" at screen 1.0,0.014 right font "times.ttf,12"
 
 set style line 1 pointtype 7 linecolor rgb '#000000' pointsize 4
 plot \
