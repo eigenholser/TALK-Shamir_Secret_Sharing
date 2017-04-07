@@ -32,58 +32,47 @@
 			<div class="slides">
 
 				<!-- Title Slide -->
-				<section data-background="figures/gnuplot/background-title.png" data-background-size="contain" data-transition="fade-out">
+				<section data-background="figures/gnuplot/background-title.png" data-background-size="contain" data-transition="fade-in fade-out">
 					<h1>Shamir</h1>
 					<h1>Secret</h1>
 					<h1>Sharing</h1>
 				</section>
 
 				<!--
-						Pictures!
+					Gentle introduction to polynomials.
 				-->
-				<section>
+				<section data-transition="zoom-in fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<h1>Polynomials</h1>
+					</section>
+
+					<section data-background="figures/gnuplot/background-parabola.png" data-background-size="contain" data-transition="fade-out">
+						<h3>Parabola</h3>
+						<p>A parabola is a polynomial of degree 2</p>
+						\[\begin{align}
+								f(x) = x^2 \\
+						\end{align}\]
+					</section>
+
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<h1>Examples</h1>
-						<p align="left">Consider polyomials of degree 1, 2, and 3. In other words, $k$ is 2, 3, or 4.</p>
-						<ul>
-							<li>Suppose we have $j$ shares $S_1,\ldots,S_j$, where $j &lt; k$</li>
-						  <li>Then suppose we have $j$ shares $S_1,\ldots,S_j$, where $j = k$</li>
-						</ul>
+						<h3>Generally</h3>
+						\[\begin{align}
+								f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_nx^n \\
+						\end{align}\]
 					</section>
 
-					<section data-background="figures/gnuplot/linear-1.png" data-background-size="contain" data-transition="fade-out">
-						<!-- Just the background here -->
-					</section>
-
-					<section data-background="figures/gnuplot/linear-2.png" data-background-size="contain" data-transition="fade-out">
-						<!-- Just the background here -->
-					</section>
-
-					<section data-background="figures/gnuplot/quadratic-1.png" data-background-size="contain" data-transition="fade-out">
-						<!-- Just the background here -->
-					</section>
-
-					<section data-background="figures/gnuplot/quadratic-2.png" data-background-size="contain" data-transition="fade-out">
-						<!-- Just the background here -->
-					</section>
-
-					<section data-background="figures/gnuplot/quadratic-3.png" data-background-size="contain" data-transition="fade-out">
-						<!-- Just the background here -->
-					</section>
-
-					<section data-background="figures/gnuplot/cubic-1.png" data-background-size="contain" data-transition="fade-out">
-						<!-- Just the background here -->
-					</section>
-
-					<section data-background="figures/gnuplot/cubic-2.png" data-background-size="contain" data-transition="fade-out">
-						<!-- Just the background here -->
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h3>Succinctly</h3>
+						\[\begin{align}
+								f(x) = \sum_{i=0}^n a_ix^i
+						\end{align}\]
 					</section>
 				</section>
 
 				<!--
 					Shamir Secret Sharing Definition
 				-->
-				<section>
+				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h3>Mathematical Definition</h3>
 						<p align="left">Divide secret $S$ into $n$ pieces of data $S_i,\ldots,S_n$ such that</p>
@@ -133,10 +122,52 @@
 				</section>
 
 				<!--
+						Examples
+				-->
+				<section data-transition="zoom-in fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h1>Examples</h1>
+						<p align="left">Consider polyomials of degree 1, 2, and 3. In other words, $k$ is 2, 3, or 4.</p>
+						<ul>
+							<li>Suppose we have $j$ shares $S_1,\ldots,S_j$, where $j &lt; k$</li>
+						  <li>Then suppose we have $j$ shares $S_1,\ldots,S_j$, where $j = k$</li>
+						</ul>
+					</section>
+
+					<section data-background="figures/gnuplot/linear-1.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/linear-2.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/quadratic-1.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/quadratic-2.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/quadratic-3.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/cubic-1.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+
+					<section data-background="figures/gnuplot/cubic-2.png" data-background-size="contain" data-transition="fade-out">
+						<!-- Just the background here -->
+					</section>
+				</section>
+
+				<!--
 						Example of a straight line: f(x) = 4x + 42
 						Solve for the polynomial and the secret.
 				-->
-				<section>
+				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h2>Example</h2>
 						<p align="left">A straight line is described by the polynomial</p>
@@ -210,7 +241,7 @@
 				<!--
 					What if we have only one point?
 				-->
-				<section>
+				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Problem</h1>
 						<aside class="notes">
@@ -253,7 +284,7 @@
 				<!--
 						Finite Field Arithmetic
 				-->
-				<section>
+				<section data-transition="zoom-in fade-out">
 					<section data-background="images/background-clock.png" data-background-size="contain" data-transition="fade-in fade-out">
 					</section>
 
@@ -303,7 +334,7 @@
 					</section>
 				</section>
 
-				<section>
+				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>DEMO</h1>
 					</section>
