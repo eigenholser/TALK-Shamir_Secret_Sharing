@@ -39,8 +39,8 @@ set ylabel "f(x)" font "lucon.ttf,30"
 #set y2tics nomirror
 set label 1 "2005-2017 © eigenholser" \
     at screen 0.99,0.014 right font "times.ttf,12"
-set label 2 "f(x) = 7x^2 + 3x + 42" at screen 0.33,0.745 left font "times.ttf,30"
-set label 3 "f(x) = α(x^2 - 7x + 10) + 52x - 28" at screen 0.33,0.710 left font "times.ttf,30"
+#set label 2 "f(x) = 7x^2 + 3x + 42" at screen 0.33,0.745 left font "times.ttf,30"
+#set label 3 "f(x) = α(x^2 - 7x + 10) + 52x - 28" at screen 0.33,0.710 left font "times.ttf,30"
 set title "Quadratic polynomials passing through points (2,76) and (5,232)" font "lucon.ttf,30"
 
 # Greek α symbol is U03B1

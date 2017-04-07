@@ -39,8 +39,8 @@ set ylabel "f(x)" font "lucon.ttf,30"
 #set y2tics nomirror
 set label 1 "2005-2017 © eigenholser" \
     at screen 0.99,0.014 right font "times.ttf,12"
-set label 2 "f(x) = 4x + 42" at screen 0.21,0.865 left font "times.ttf,30"
-set label 3 "f(x) = α(x + 17) - 26" at screen 0.21,0.830 left font "times.ttf,30"
+#set label 2 "f(x) = 4x + 42" at screen 0.21,0.865 left font "times.ttf,30"
+#set label 3 "f(x) = α(x + 17) - 26" at screen 0.21,0.830 left font "times.ttf,30"
 set title "Linear polynomials passing through point (-17,-26)" font "lucon.ttf,30"
 
 # Greek α symbol is U03B1
