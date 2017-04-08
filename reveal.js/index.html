@@ -212,25 +212,26 @@
 						<p>$f(x) = ax + b$</p>
 
 						<aside class="notes">
-							<p>First degree polynomial.</p>
-							<p>How many points are necessary to describe a line?</p>
-							<p>Two. Degree + 1.</p>
+							<ul>
+								<li>First degree polynomial.</li>
+								<li>How many points are necessary to describe a line?</li>
+								<li>Two. Degree + 1.</li>
+							</ul>
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<p align="left">Suppose we know two points:</p>
+					<section data-background="figures/gnuplot/line.png" data-background-size="contain" data-transition="fade-out">
+						<p align="left">Suppose we know two points on the line:</p>
 						\[\begin{align}
 						P1 &amp;= (-16, -22) \\
 						P2 &amp;= (-17, -26) \\
 						\end{align}\]
 						<aside class="notes">
-							<p>The two points represent our "shares" needed to recover the secret.</p>
+							<ul>
+								<li>Two points are sufficient to identify a line.</li>
+								<li>The two points represent our "shares" needed to recover the secret.</li>
+						</ul>
 						</aside>
-					</section>
-
-					<section data-background="figures/gnuplot/line.png" data-background-size="contain" data-transition="fade-out">
-						<!-- Just the background here -->
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
@@ -240,9 +241,11 @@
 						f(-17) = -26 &amp;= a(-17) + b \\
 						\end{align}\]
 						<aside class="notes">
-							<p>We have two equations and two variables. We can find $a$ and $b$</p>
-							<p>There are other methods.</p>
-							<p>Not computationally efficient. LaGrange interpolation.</p>
+							<ul>
+								<li>We have two equations and two variables. We can find $a$ and $b$</li>
+								<li>There are other methods.</li>
+								<li>Not computationally efficient. LaGrange interpolation.</li>
+							</ul>
 						</aside>
 					</section>
 
@@ -250,7 +253,9 @@
 						<p align="left">We can solve the equations for $b$:</p>
 						\[b = 16a - 22\]
 						<aside class="notes">
-							<p>Substite $b$ into the second equation.</p>
+							<ul>
+							<li>Substite $b$ into the second equation.</li>
+							</ul>
 						</aside>
 					</section>
 
@@ -285,7 +290,9 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Problem</h1>
 						<aside class="notes">
-							<p>But where are the prime numbers?</p>
+							<ul>
+								<li>But where are the prime numbers?</li>
+							</ul>
 						</aside>
 					</section>
 
@@ -316,7 +323,9 @@
 								a = 7 \rightarrow b &amp; = -16(7) + 106 = -6 \\
 						\end{align}\]
 						<aside class="notes">
-							<p>But recall that $a_i \in \mathbb{N}$</p>
+							<ul>
+							<li>But recall that $a_i \in \mathbb{N}$</li>
+							</ul>
 						</aside>
 					</section>
 				</section>
@@ -354,7 +363,9 @@
 								b    &amp; = -16a + 20 + 43m
 						\end{align}\]
 						<aside class="notes">
-							<p align="left">But $f(x) \&#59; mod \&#59; p$ can be written $f(x) - pm$ where $m$ is a multiplier.</p>
+							<ul>
+								<li>But $f(x) \&#59; mod \&#59; p$ can be written $f(x) - pm$ where $m$ is a multiplier.</li>
+							</ul>
 						</aside>
 					</section>
 
@@ -370,7 +381,9 @@
 								a = 7 \rightarrow b &amp; = -16(7) + 20 + 43m = -92 + 43m \\
 						\end{align}\]
 						<aside class="notes">
-							<p align="left">See how Eve cannot gain any information about the secret?</p>
+							<ul>
+							<li>See how Eve cannot gain any information about the secret?</li>
+							</ul>
 							$m$ is still unknown.
 						</aside>
 					</section>
