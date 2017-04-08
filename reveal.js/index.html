@@ -108,7 +108,11 @@
 				-->
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+            <h1>Shamir Secret Sharing</h1>
 						<h3>Mathematical Definition</h3>
+          </section>
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+            <h3>Shamir Secret Sharing</h3>
 						<p align="left">Divide secret $S$ into $n$ pieces of data $S_i,\ldots,S_n$ such that</p>
 						<ul>
 							<li>Knowledge of any $k$ or more $S_i$ makes $S$ computable.</li>
@@ -139,7 +143,7 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<ul>
-							<li>Choose at random $k-1$ positive integers $a_1,\ldots,a_{k-1}$ with $a_i&lt;P$ and let $a_0 = S; S < P$</li>
+              <li>Choose at random $k-1$ positive integers $a_1,\ldots,a_{k-1}$ with $a_i&lt;P; a_i \in \mathbb{N}$ and let $a_0 = S; S < P$</li>
 							<li>Build the polynomial $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1}$</li>
 							<li>Construct any $n$ points, for instance, set $i=1,\ldots,n$ to retrieve $(i,f(i))$</li>
 						</ul>
@@ -152,10 +156,6 @@
 							<li>Given any subset of $k$ of these pairs, we can find the coefficients of the polynomial. The secret is the constant term $a_0$</li>
 						</ul>
 					</section>
-
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<h2>Why is this secure?</h2>
-					</section>
 				</section>
 
 				<!--
@@ -165,12 +165,17 @@
 				-->
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<h1>Examples</h1>
+						<h1>Why is this secure?</h1>
 						<p align="left">Consider polyomials of degree 1, 2, and 3. In other words, $k$ is 2, 3, or 4.</p>
 						<ul>
 							<li>Suppose we have $j$ shares $S_1,\ldots,S_j$, where $j &lt; k$</li>
 						  <li>Then suppose we have $j$ shares $S_1,\ldots,S_j$, where $j = k$</li>
 						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Infinite number of curves passing through $k-1$ points.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/linear-1.png" data-background-size="contain" data-transition="fade-out">
@@ -210,7 +215,7 @@
 				-->
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<h2>Example</h2>
+						<h1>Computing the secret</h1>
 						<p align="left">A straight line is described by the polynomial</p>
 						<p>$f(x) = ax + b$</p>
 
@@ -232,7 +237,7 @@
 						<aside class="notes">
 							<ul>
 								<li>Two points are sufficient to identify a line.</li>
-								<li>The two points represent our "shares" needed to recover the secret.</li>
+								<li>The two points represent our "shares" needed to compute the secret.</li>
 						</ul>
 						</aside>
 					</section>
@@ -240,8 +245,9 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<p align="left">We can write the system of equations:</p>
 						\[\begin{align}
-						f(-16) = -22 &amp;= a(-16) + b \\
-						f(-17) = -26 &amp;= a(-17) + b \\
+            f(x)   &amp; = ax + b \\
+						P1 \rightarrow f(-16) = -22 &amp;= a(-16) + b \\
+						P2 \rightarrow f(-17) = -26 &amp;= a(-17) + b \\
 						\end{align}\]
 						<aside class="notes">
 							<ul>
@@ -274,6 +280,16 @@
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						Now that we know $a = 4$ we can find our secret, $b$
+						\begin{align}
+						f(x) &amp;= ax + b \\
+						     &amp;= 4x + b \\
+						P1 \rightarrow f(-16) = -22  &amp;= 4(-16) + b \\
+						b    &amp;= 42 \\
+						\end{align}
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<p>Alternatively</p>
 						\[\begin{align}
 						b &amp;= 16a - 22 \\
 						b &amp;= 16(4) - 22 \\
@@ -308,7 +324,7 @@
 						<p align="left">She can solve for $b$ in terms of $a$.</p>
 						\[\begin{align}
 								f(x) &amp; = ax + b \\
-								106  &amp; = ax + b \\
+                P \rightarrow f(16) = 106  &amp; = a(16) + b \\
 								b    &amp; = -16a + 106 \\
 						\end{align}\]
 					</section>
@@ -327,7 +343,7 @@
 						\end{align}\]
 						<aside class="notes">
 							<ul>
-							<li>But recall that $a_i \in \mathbb{N}$</li>
+								<li>But recall that $a_i \in \mathbb{N}$</li>
 							</ul>
 						</aside>
 					</section>
@@ -378,7 +394,7 @@
 								a = 1 \rightarrow b &amp; = -16(1) + 20 + 43m = 4 + 43m \\
 								a = 2 \rightarrow b &amp; = -16(2) + 20 + 43m = -12 + 43m \\
 								a = 3 \rightarrow b &amp; = -16(3) + 20 + 43m = -28 + 43m \\
-								a = 4 \rightarrow b &amp; = -16(4) + 20 + 43m = -44 + 43m \\
+                a = 4 \rightarrow b &amp; = -16(4) + 20 + 43m = -44 + 43m \\
 								a = 5 \rightarrow b &amp; = -16(5) + 20 + 43m = -60 + 43m \\
 								a = 6 \rightarrow b &amp; = -16(6) + 20 + 43m = -76 + 43m \\
 								a = 7 \rightarrow b &amp; = -16(7) + 20 + 43m = -92 + 43m \\
