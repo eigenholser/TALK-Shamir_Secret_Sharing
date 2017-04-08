@@ -137,7 +137,7 @@
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h3>Shamir Secret Sharing</h3>
-						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $F$ of size $P$ where $0 < k \leq n < P; S < P$ and $P$ is a prime number.</p>
+						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $\mathbb{F}$ of size $P$ where $0 < k \leq n < P; S < P$ and $P$ is a prime number.</p>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
@@ -307,7 +307,8 @@
 				-->
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<h1>Problem</h1>
+						<h1>The Problem</h1>
+            <h3>Information Leakage</h3>
 						<aside class="notes">
 							<ul>
 								<li>But where are the prime numbers?</li>
@@ -327,6 +328,7 @@
                 P \rightarrow f(16) = 106  &amp; = a(16) + b \\
 								b    &amp; = -16a + 106 \\
 						\end{align}\]
+            <p align="left">Recall the requirement that $a,b \in \mathbb{N}$.</p>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
@@ -347,6 +349,14 @@
 							</ul>
 						</aside>
 					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<p align="left">Since $b$ cannot be negative, Eve can conclude that</p>
+						\begin{align}
+						a &amp; \in [0,1,2,3,4,5,6] \\
+						b &amp; \in [106,90,74,58,42,26,10]
+						\end{align}
+					</section>
 				</section>
 
 				<!--
@@ -355,35 +365,48 @@
 						***********************
 				-->
 				<section data-transition="zoom-in fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+            <h1>The Solution</h1>
+						<h3>Finite Field</h3>
+					</section>
+
 					<section data-background="images/background-clock.png" data-background-size="contain" data-transition="fade-in fade-out">
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<h1>Finite Field</h1>
+						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $p$ where $S \lt p$ and $p$ is prime.</p>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<p align="left">What if we select a prime number where $S < p$. Since $S=42$ let us select $p=43$.</p>
+						<p align="left">Since $S=42$, choosing $p=43$ satisfies the requirement that $S \lt p$ and $p$ is prime.</p>
 						\[\begin{align}
-								f(x)  &amp; = 4x + 42 \&#59; mod \&#59; 43 \\
-								f(16) &amp; = 4(16) + 42 \&#59; mod \&#59; 43 \\
-								      &amp; = 106 \&#59; mod \&#59; 43 \\
+								f(x)  &amp; = 4x + 42 \mod 43 \\
+								f(16) &amp; = 4(16) + 42 \mod 43 \\
+								      &amp; = 106 \mod 43 \\
 								f(16) &amp; = 20
 						\end{align}\]
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<p align="left">Eve knows $P=(16,20)$ and modulus $p=43$.</p>
+						<p align="left">Recall from the definition of a modulus that</p>
+						\begin{align}
+							a \mod p = a - pm \mid 0 \leq a - pm \leq p \\
+						\end{align}
+						<p align="left">In other words, $m$ is a multiplier.</p>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<p align="left">Eve knows $P=(16,20)$, $f(x) = ax + b \mod p$, and modulus $p=43$.</p>
 						<p align="left">So she can substitute and write:</p>
 						\[\begin{align}
-								f(x) &amp; = ax + b \&#59; mod \&#59; p \\
+								f(x) &amp; = ax + b \mod p \\
 								     &amp; = ax + b - pm \\
 								20   &amp; = 16a + b - 43m \\
 								b    &amp; = -16a + 20 + 43m
 						\end{align}\]
 						<aside class="notes">
 							<ul>
-								<li>But $f(x) \&#59; mod \&#59; p$ can be written $f(x) - pm$ where $m$ is a multiplier.</li>
+								<li>But $f(x) \mod p$ can be written $f(x) - pm$ where $m$ is a multiplier.</li>
 							</ul>
 						</aside>
 					</section>
