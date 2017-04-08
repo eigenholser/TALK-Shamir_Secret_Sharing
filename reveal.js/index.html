@@ -47,9 +47,13 @@
 					Begin with API demo
 					*******************
 				-->
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="zoom-in fade-out">
+				<section data-transition="zoom-in fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>DEMO</h1>
+						<p align="left">This is our secret:</p>
+						<pre>The secret number is 42</pre>
 					</section>
+				</section>
 
 				<!--
 					**********************************
@@ -57,12 +61,12 @@
 					**********************************
 				-->
 				<section data-transition="zoom-in fade-out">
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Polynomials</h1>
             <h3>A gentle introduction</h3>
 					</section>
 
-					<section data-background="figures/gnuplot/background-line.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-line.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Linear Polynomial</h3>
 						<p>A straight line is a polynomial of degree 1</p>
 						\[\begin{align}
@@ -70,7 +74,7 @@
 						\end{align}\]
 					</section>
 
-					<section data-background="figures/gnuplot/background-parabola.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-parabola.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Quadratic Polynomial</h3>
 						<p>A parabola is a polynomial of degree 2</p>
 						\[\begin{align}
@@ -78,7 +82,7 @@
 						\end{align}\]
 					</section>
 
-					<section data-background="figures/gnuplot/background-cubic.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-cubic.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Cubic Polynomial</h3>
 						<p>A cubic curve is a polynomial of degree 3</p>
 						\[\begin{align}
@@ -86,14 +90,14 @@
 						\end{align}\]
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Generally</h3>
 						\[\begin{align}
 								f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_nx^n \\
 						\end{align}\]
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Succinctly</h3>
 						\[\begin{align}
 								f(x) = \sum_{i=0}^n a_ix^i
@@ -111,7 +115,8 @@
             <h1>Shamir Secret Sharing</h1>
 						<h3>Mathematical Definition</h3>
           </section>
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
             <h3>Shamir Secret Sharing</h3>
 						<p align="left">Divide secret $S$ into $n$ pieces of data $S_i,\ldots,S_n$ such that</p>
 						<ul>
@@ -121,12 +126,12 @@
 						<p align="left">This is called a $(k,n)$ threshold scheme.</p>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<p align="left">The essential idea is that $k$ points are required to define a polynomial of degree $k-1$.</p>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						Definition of polynomial:
 						<script type="math/tex" mode="display">
@@ -135,12 +140,12 @@
 						</script>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $\mathbb{F}$ of size $P$ where $0 < k \leq n < P; S < P$ and $P$ is a prime number.</p>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<ul>
               <li>Choose at random $k-1$ positive integers $a_1,\ldots,a_{k-1}$ with $a_i&lt;P; a_i \in \mathbb{N}$ and let $a_0 = S; S < P$</li>
@@ -149,7 +154,7 @@
 						</ul>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<ul>
 							<li>Every participant is given a point, i.e. an integer input to the polynomial and the corresponding integer output.</li>
@@ -178,31 +183,31 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/linear-1.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/linear-1.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
 					</section>
 
-					<section data-background="figures/gnuplot/linear-2.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/linear-2.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
 					</section>
 
-					<section data-background="figures/gnuplot/quadratic-1.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/quadratic-1.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
 					</section>
 
-					<section data-background="figures/gnuplot/quadratic-2.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/quadratic-2.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
 					</section>
 
-					<section data-background="figures/gnuplot/quadratic-3.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/quadratic-3.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
 					</section>
 
-					<section data-background="figures/gnuplot/cubic-1.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/cubic-1.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
 					</section>
 
-					<section data-background="figures/gnuplot/cubic-2.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/cubic-2.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
 					</section>
 				</section>
@@ -228,7 +233,7 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/line.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/line.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Suppose we know two points on the line:</p>
 						\[\begin{align}
 						P1 &amp;= (-16, -22) \\
@@ -242,7 +247,7 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">We can write the system of equations:</p>
 						\[\begin{align}
             f(x)   &amp; = ax + b \\
@@ -258,7 +263,7 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">We can solve the equations for $b$:</p>
 						\[b = 16a - 22\]
 						<aside class="notes">
@@ -268,7 +273,7 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Substituting $b$ into the second equation and simplifying:</p>
 						\[\begin{align}
 						-26 &amp;= -17a + (16a - 22) \\
@@ -278,7 +283,7 @@
 						\end{align}\]
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						Now that we know $a = 4$ we can find our secret, $b$
 						\begin{align}
 						f(x) &amp;= ax + b \\
@@ -288,7 +293,7 @@
 						\end{align}
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p>Alternatively</p>
 						\[\begin{align}
 						b &amp;= 16a - 22 \\
@@ -316,12 +321,12 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Suppose Eve has managed to obtain a share, say $P=(16, 106)$.</p>
 						<p align="left">She knows $f(x) = ax + b$</p>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">She can solve for $b$ in terms of $a$.</p>
 						\[\begin{align}
 								f(x) &amp; = ax + b \\
@@ -331,7 +336,7 @@
             <p align="left">Recall the requirement that $a,b \in \mathbb{N}$.</p>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">
 						\[\begin{align}
 								a = 0 \rightarrow b &amp; = -16(0) + 106 = 106 \\
@@ -350,7 +355,7 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Since $b$ cannot be negative, Eve can conclude that</p>
 						\begin{align}
 						a &amp; \in [0,1,2,3,4,5,6] \\
@@ -377,7 +382,7 @@
 						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $p$ where $S \lt p$ and $p$ is prime.</p>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Since $S=42$, choosing $p=43$ satisfies the requirement that $S \lt p$ and $p$ is prime.</p>
 						\[\begin{align}
 								f(x)  &amp; = 4x + 42 \mod 43 \\
@@ -387,7 +392,7 @@
 						\end{align}\]
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Recall from the definition of a modulus that</p>
 						\begin{align}
 							a \mod p = a - pm \mid 0 \leq a - pm \leq p \\
@@ -395,7 +400,7 @@
 						<p align="left">In other words, $m$ is a multiplier.</p>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Eve knows $P=(16,20)$, $f(x) = ax + b \mod p$, and modulus $p=43$.</p>
 						<p align="left">So she can substitute and write:</p>
 						\[\begin{align}
@@ -411,23 +416,27 @@
 						</aside>
 					</section>
 
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						\[\begin{align}
 								a = 0 \rightarrow b &amp; = -16(0) + 20 + 43m = 20 + 43m \\
 								a = 1 \rightarrow b &amp; = -16(1) + 20 + 43m = 4 + 43m \\
 								a = 2 \rightarrow b &amp; = -16(2) + 20 + 43m = -12 + 43m \\
 								a = 3 \rightarrow b &amp; = -16(3) + 20 + 43m = -28 + 43m \\
-                a = 4 \rightarrow b &amp; = -16(4) + 20 + 43m = -44 + 43m \\
+								a = 4 \rightarrow b &amp; = -16(4) + 20 + 43m = -44 + 43m \\
 								a = 5 \rightarrow b &amp; = -16(5) + 20 + 43m = -60 + 43m \\
 								a = 6 \rightarrow b &amp; = -16(6) + 20 + 43m = -76 + 43m \\
 								a = 7 \rightarrow b &amp; = -16(7) + 20 + 43m = -92 + 43m \\
 						\end{align}\]
 						<aside class="notes">
 							<ul>
-							<li>See how Eve cannot gain any information about the secret?</li>
+								<li>See how Eve cannot gain any information about the secret?</li>
+								<li>$m$ is still unknown.</li>
 							</ul>
-							$m$ is still unknown.
 						</aside>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<p align="left">The secret, $S$, is equally likely to be any element of the finite field $\mathbb{F}$. No information may be learned about $S$ unless $S_1 \ldots S_k$ are known.</p>
 					</section>
 				</section>
 
