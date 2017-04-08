@@ -1,6 +1,7 @@
 set output "line.png"
 load "settings.gp"
 
+set xrange [-20:-14]
 f(x) = 4.0*x + 42
 x1 = -17
 x2 = -16
