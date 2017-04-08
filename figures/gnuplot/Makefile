@@ -35,7 +35,7 @@ clean:
 		$(RM) $$item; \
 	done
 
-install:
+install: all
 	@for item in `${pnglist}`; do \
 		${ECHO} "Installing $$item"; \
 		cp $$item ../../reveal.js/figures/gnuplot; \
