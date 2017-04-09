@@ -37,4 +37,4 @@ set grid ytics
 set mytics
 set my2tics
 set ylabel "f(x)" font "lucon.ttf,30"
-set label 1 "eigenholser" at screen 1.0,0.014 right font "times.ttf,12"
+set label 1 "eigenholser" at screen 0.99,0.015 right font "times.ttf,12"
