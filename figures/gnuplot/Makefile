@@ -4,7 +4,7 @@ CHMOD=	chmod
 ROMODE=	644
 RM=	rm -f
 alllist= for x in $(wildcard *.gp); do \
-			 ${ECHO} $${x%.gp}; \
+			 ${ECHO} $${x%.gp} | grep -v settings; \
 		 done
 pnglist= for x in $(wildcard *.png); do \
 			   ${ECHO} $$x; \
