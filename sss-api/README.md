@@ -24,10 +24,7 @@ just to see that it works.
 
 
 ## References
-[Cryptographer-verified implementation of Shamir's Secret Sharing Scheme] []
-[Building a REST API in Java and Scala Using Play Framework – Part 1] []
-[Building a REST API in Java and Scala Using Play Framework – Part 2] []
-[Cryptographer-verified implementation of Shamir's Secret Sharing Scheme]: https://github.com/secretsharing/secretsharing
-[Building a REST API in Java and Scala Using Play Framework – Part 1]: http://nordicapis.com/building-a-rest-api-in-java-scala-using-play-framework-2-part-1/
-[Building a REST API in Java and Scala Using Play Framework – Part 2]: http://nordicapis.com/building-rest-api-java-scala-using-play-framework-part-2/
-[Swagger Play2]: https://github.com/swagger-api/swagger-play/tree/master/play-2.5/swagger-play2
+* [Cryptographer-verified implementation of Shamir's Secret Sharing Scheme](https://github.com/secretsharing/secretsharing)
+* [Building a REST API in Java and Scala Using Play Framework – Part 1](http://nordicapis.com/building-a-rest-api-in-java-scala-using-play-framework-2-part-1/)
+* [Building a REST API in Java and Scala Using Play Framework – Part 2](http://nordicapis.com/building-rest-api-java-scala-using-play-framework-part-2/)
+* [Swagger Play2](https://github.com/swagger-api/swagger-play/tree/master/play-2.5/swagger-play2)
