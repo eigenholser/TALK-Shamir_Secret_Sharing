@@ -1,8 +1,7 @@
 # Shamir Secret Sharing Microservice
 
-Implementation of Shamir Secret Sharing using the Java
-[Cryptographer-verified implementation of Shamir's Secret Sharing Scheme] [] library
-available [on Github] [Cryptographer-verified implementation of Shamir's Secret Sharing Scheme].
+Implementation of Shamir Secret Sharing using the Java [Secret Sharing](https://github.com/secretsharing/secretsharing)
+library available [on Github](https://github.com/secretsharing/secretsharing).
 
 ## Run With SBT
 
