@@ -1,0 +1,20 @@
+
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %level %logger - %message%n%xException</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="controllers" level="DEBUG"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <logger name="com.google.inject" level="INFO"/>
+    <logger name="slick" level="INFO"/>
+    <logger name="com.zaxxer" level="INFO"/>
+    <logger name="javax.management" level="INFO"/>
+</configuration>

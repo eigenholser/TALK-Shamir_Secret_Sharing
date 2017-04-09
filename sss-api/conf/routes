@@ -1,0 +1,3 @@
+POST    /split                  @controllers.ShamirSecretSharing.split()
+POST    /join                   @controllers.ShamirSecretSharing.join()
+#GET     /swagger.json           controllers.ApiHelpController.getResources
