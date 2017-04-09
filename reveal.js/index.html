@@ -69,39 +69,39 @@
 					<section data-background="figures/gnuplot/background-line.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Linear Polynomial</h3>
 						<p>A straight line is a polynomial of degree 1</p>
-						\[\begin{align}
-								f(x) = 2x \\
-						\end{align}\]
+						\begin{align}
+								f(x) = 2x
+						\end{align}
 					</section>
 
 					<section data-background="figures/gnuplot/background-parabola.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Quadratic Polynomial</h3>
 						<p>A parabola is a polynomial of degree 2</p>
-						\[\begin{align}
-								f(x) = x^2 \\
-						\end{align}\]
+						\begin{align}
+								f(x) = x^2
+						\end{align}
 					</section>
 
 					<section data-background="figures/gnuplot/background-cubic.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Cubic Polynomial</h3>
 						<p>A cubic curve is a polynomial of degree 3</p>
-						\[\begin{align}
-								f(x) = x^3 \\
-						\end{align}\]
+						\begin{align}
+								f(x) = x^3
+						\end{align}
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Generally</h3>
-						\[\begin{align}
-								f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_nx^n \\
-						\end{align}\]
+						\begin{align}
+								f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_nx^n
+						\end{align}
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Succinctly</h3>
-						\[\begin{align}
+						\begin{align}
 								f(x) = \sum_{i=0}^n a_ix^i
-						\end{align}\]
+						\end{align}
 					</section>
 				</section>
 
@@ -134,10 +134,10 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						Definition of polynomial:
-						<script type="math/tex" mode="display">
-							f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \\
-							f(x) = \sum_{i=0}^{k-1} a_ix^i
-						</script>
+						\begin{align}
+							f(x) &amp; = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \\
+							f(x) &amp; = \sum_{i=0}^{k-1} a_ix^i
+						\end{align}
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -164,6 +164,105 @@
 				</section>
 
 				<!--
+						******************************************
+						Example of a straight line: f(x) = 4x + 42
+						Solve for the polynomial and the secret.
+						******************************************
+				-->
+				<section data-transition="zoom-in fade-out">
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h1>Computing the secret</h1>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<p align="left">A straight line is described by the polynomial</p>
+						<p>$f(x) = ax + b$</p>
+
+						<aside class="notes">
+							<ul>
+								<li>First degree polynomial.</li>
+								<li>How many points are necessary to describe a line?</li>
+								<li>Two. Degree + 1.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-background="figures/gnuplot/line.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<p align="left">Suppose we know two points on the line:</p>
+
+						\begin{align}
+						P1 &amp;= (-16, -22) \\
+						P2 &amp;= (-17, -26)
+						\end{align}
+
+						<aside class="notes">
+							<ul>
+								<li>Two points are sufficient to identify a line.</li>
+								<li>The two points represent our "shares" needed to compute the secret.</li>
+						</ul>
+						</aside>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<p align="left">We can write the system of equations:</p>
+
+						\begin{align}
+            f(x)   &amp; = ax + b \\
+						P1 \rightarrow f(-16) = -22 &amp;= a(-16) + b \\
+						P2 \rightarrow f(-17) = -26 &amp;= a(-17) + b
+						\end{align}
+
+						<aside class="notes">
+							<ul>
+								<li>We have two equations and two variables. We can find $a$ and $b$</li>
+								<li>There are other methods.</li>
+								<li>Not computationally efficient. LaGrange interpolation.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<p align="left">We can solve the equations for $b$:</p>
+						\[b = 16a - 22\]
+						<aside class="notes">
+							<ul>
+							<li>Substite $b$ into the second equation.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<p align="left">Substituting $b$ into the second equation and simplifying:</p>
+						\begin{align}
+						-26 &amp;= -17a + (16a - 22) \\
+						    &amp;= -a - 22 \\
+						a &amp;= 26-22 \\
+						a &amp;= 4
+						\end{align}
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+						Now that we know $a = 4$ we can find our secret, $b$
+						\begin{align}
+						f(x) &amp;= ax + b \\
+						     &amp;= 4x + b \\
+						P1 \rightarrow f(-16) = -22  &amp;= 4(-16) + b \\
+						b    &amp;= 42
+						\end{align}
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<p>Alternatively</p>
+						\begin{align}
+						b &amp;= 16a - 22 \\
+						b &amp;= 16(4) - 22 \\
+						b &amp;= 64 - 22 \\
+						b &amp;= 42
+						\end{align}
+					</section>
+				</section>
+
+				<!--
 						********
 						Examples
 						********
@@ -171,6 +270,9 @@
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Why is this secure?</h1>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Consider polyomials of degree 1, 2, and 3. In other words, $k$ is 2, 3, or 4.</p>
 						<ul>
 							<li>Suppose we have $j$ shares $S_1,\ldots,S_j$, where $j &lt; k$</li>
@@ -213,99 +315,6 @@
 				</section>
 
 				<!--
-						******************************************
-						Example of a straight line: f(x) = 4x + 42
-						Solve for the polynomial and the secret.
-						******************************************
-				-->
-				<section data-transition="zoom-in fade-out">
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<h1>Computing the secret</h1>
-						<p align="left">A straight line is described by the polynomial</p>
-						<p>$f(x) = ax + b$</p>
-
-						<aside class="notes">
-							<ul>
-								<li>First degree polynomial.</li>
-								<li>How many points are necessary to describe a line?</li>
-								<li>Two. Degree + 1.</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section data-background="figures/gnuplot/line.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">Suppose we know two points on the line:</p>
-						\[\begin{align}
-						P1 &amp;= (-16, -22) \\
-						P2 &amp;= (-17, -26) \\
-						\end{align}\]
-						<aside class="notes">
-							<ul>
-								<li>Two points are sufficient to identify a line.</li>
-								<li>The two points represent our "shares" needed to compute the secret.</li>
-						</ul>
-						</aside>
-					</section>
-
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">We can write the system of equations:</p>
-						\[\begin{align}
-            f(x)   &amp; = ax + b \\
-						P1 \rightarrow f(-16) = -22 &amp;= a(-16) + b \\
-						P2 \rightarrow f(-17) = -26 &amp;= a(-17) + b \\
-						\end{align}\]
-						<aside class="notes">
-							<ul>
-								<li>We have two equations and two variables. We can find $a$ and $b$</li>
-								<li>There are other methods.</li>
-								<li>Not computationally efficient. LaGrange interpolation.</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">We can solve the equations for $b$:</p>
-						\[b = 16a - 22\]
-						<aside class="notes">
-							<ul>
-							<li>Substite $b$ into the second equation.</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">Substituting $b$ into the second equation and simplifying:</p>
-						\[\begin{align}
-						-26 &amp;= -17a + (16a - 22) \\
-						    &amp;= -a - 22 \\
-						a &amp;= 26-22 \\
-						a &amp;= 4 \\
-						\end{align}\]
-					</section>
-
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						Now that we know $a = 4$ we can find our secret, $b$
-						\begin{align}
-						f(x) &amp;= ax + b \\
-						     &amp;= 4x + b \\
-						P1 \rightarrow f(-16) = -22  &amp;= 4(-16) + b \\
-						b    &amp;= 42 \\
-						\end{align}
-					</section>
-
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p>Alternatively</p>
-						\[\begin{align}
-						b &amp;= 16a - 22 \\
-						b &amp;= 16(4) - 22 \\
-						b &amp;= 64 - 22 \\
-						b &amp;= 42 \\
-						\end{align}\]
-					</section>
-
-				</section>
-
-				<!--
 					*******************************
 					What if we have only one point?
 					*******************************
@@ -328,17 +337,17 @@
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">She can solve for $b$ in terms of $a$.</p>
-						\[\begin{align}
+						\begin{align}
 								f(x) &amp; = ax + b \\
                 P \rightarrow f(16) = 106  &amp; = a(16) + b \\
-								b    &amp; = -16a + 106 \\
-						\end{align}\]
+								b    &amp; = -16a + 106
+						\end{align}
             <p align="left">Recall the requirement that $a,b \in \mathbb{N}$.</p>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">
-						\[\begin{align}
+						\begin{align}
 								a = 0 \rightarrow b &amp; = -16(0) + 106 = 106 \\
 								a = 1 \rightarrow b &amp; = -16(1) + 106 = 90 \\
 								a = 2 \rightarrow b &amp; = -16(2) + 106 = 74 \\
@@ -346,8 +355,8 @@
 								a = 4 \rightarrow b &amp; = -16(4) + 106 = 42 \\
 								a = 5 \rightarrow b &amp; = -16(5) + 106 = 26 \\
 								a = 6 \rightarrow b &amp; = -16(6) + 106 = 10 \\
-								a = 7 \rightarrow b &amp; = -16(7) + 106 = -6 \\
-						\end{align}\]
+								a = 7 \rightarrow b &amp; = -16(7) + 106 = -6
+						\end{align}
 						<aside class="notes">
 							<ul>
 								<li>But recall that $a_i \in \mathbb{N}$</li>
@@ -417,7 +426,7 @@
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						\[\begin{align}
+						\begin{align}
 								a = 0 \rightarrow b &amp; = -16(0) + 20 + 43m = 20 + 43m \\
 								a = 1 \rightarrow b &amp; = -16(1) + 20 + 43m = 4 + 43m \\
 								a = 2 \rightarrow b &amp; = -16(2) + 20 + 43m = -12 + 43m \\
@@ -425,8 +434,8 @@
 								a = 4 \rightarrow b &amp; = -16(4) + 20 + 43m = -44 + 43m \\
 								a = 5 \rightarrow b &amp; = -16(5) + 20 + 43m = -60 + 43m \\
 								a = 6 \rightarrow b &amp; = -16(6) + 20 + 43m = -76 + 43m \\
-								a = 7 \rightarrow b &amp; = -16(7) + 20 + 43m = -92 + 43m \\
-						\end{align}\]
+								a = 7 \rightarrow b &amp; = -16(7) + 20 + 43m = -92 + 43m
+						\end{align}
 						<aside class="notes">
 							<ul>
 								<li>See how Eve cannot gain any information about the secret?</li>
