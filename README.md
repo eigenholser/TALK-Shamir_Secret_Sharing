@@ -10,7 +10,7 @@ Openwest 2017 talk on Shamir Secret Sharing. This repository contains:
 # Run the Demo
 
 You can easily run the demo API if you have Scala and SBT installed. The
-instructions are in the [README](sss-api/README.md).
+instructions are in the [README](sss-api).
 
 
 # Build the Figures
