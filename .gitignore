@@ -1,4 +1,5 @@
 reveal.js/figures/gnuplot/*.png
+reveal.js/MathJax-master/
 reveal.js/*.log
 figures/gnuplot/*png
 .idea/
@@ -15,7 +16,6 @@ node_modules/
 css/reveal.min.css
 js/reveal.min.js
 *.swp
-reveal.js/MathJax-master/
 
 # Shamir Secret Sharing Scala API
 sss-api/project/project/
