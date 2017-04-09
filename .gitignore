@@ -16,3 +16,8 @@ css/reveal.min.css
 js/reveal.min.js
 *.swp
 reveal.js/MathJax-master/
+
+# Shamir Secret Sharing Scala API
+sss-api/project/project/
+sss-api/project/target/
+sss-api/target/
