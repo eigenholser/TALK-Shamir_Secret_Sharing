@@ -1,5 +1,5 @@
 reveal.js/figures/gnuplot/*.png
-reveal.js/MathJax-master/
+reveal.js/MathJax/
 reveal.js/*.log
 figures/gnuplot/*png
 .idea/
