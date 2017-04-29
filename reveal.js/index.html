@@ -52,6 +52,15 @@
 						<h1>DEMO</h1>
 						<p align="left">This is our secret:</p>
 						<pre>The secret number is 42</pre>
+						<aside class="notes">
+							<ul>
+								<li>Start API: <pre>sbt run</pre></li>
+								<li>Split into 3/5 shares: <pre>sh split.sh > shares.json</pre></li>
+								<li>Join 5 shares: <pre>sh join.sh</pre></li>
+								<li>Join 3 shares. Join again.</li>
+								<li>Join 2 shares. Note failure.</li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 
@@ -64,6 +73,11 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Polynomials</h1>
             <h3>A gentle introduction</h3>
+						<aside class="notes">
+							<ul>
+								<li>Shamir Secret Sharing is implemented using polynomials.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-line.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -72,6 +86,12 @@
 						\begin{align}
 								f(x) = 2x
 						\end{align}
+						<aside class="notes">
+							<ul>
+								<li>Two points required to uniquely define a line.</li>
+								<li>Degree plus 1</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-parabola.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -80,6 +100,12 @@
 						\begin{align}
 								f(x) = x^2
 						\end{align}
+						<aside class="notes">
+							<ul>
+								<li>Three points required to uniquely define a parabola.</li>
+								<li>Degree plus 1</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-cubic.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -88,6 +114,12 @@
 						\begin{align}
 								f(x) = x^3
 						\end{align}
+						<aside class="notes">
+							<ul>
+								<li>Four points required to uniquely define a cubic.</li>
+								<li>Degree plus 1</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -118,12 +150,17 @@
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
             <h3>Shamir Secret Sharing</h3>
-						<p align="left">Divide secret $S$ into $n$ pieces of data $S_i,\ldots,S_n$ such that</p>
+						<p align="left">Divide secret $S$ into $n$ pieces of data $S_1,\ldots,S_n$ such that</p>
 						<ul>
 							<li>Knowledge of any $k$ or more $S_i$ makes $S$ computable.</li>
 							<li>Knowledge of any $k-1$ or less $S_i$ leaves $S$ completely undetermined.</li>
 						</ul>
 						<p align="left">This is called a $(k,n)$ threshold scheme.</p>
+						<aside class="notes">
+							<ul>
+								<li>If k=n, all participants are required to construct the secret.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -138,20 +175,39 @@
 							f(x) &amp; = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \\
 							f(x) &amp; = \sum_{i=0}^{k-1} a_ix^i
 						\end{align}
+						<aside class="notes">
+							<ul>
+								<li>Where k is the threshold.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $\mathbb{F}$ of size $P$ where $0 < k \leq n < P; S < P$ and $P$ is a prime number.</p>
+						<aside class="notes">
+							<ul>
+								<li>Note the appearance of the prime number. For diffusion.</li>
+								<li>The secret must have equal likelyhood of being any element of the finite field.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<ul>
-              <li>Choose at random $k-1$ positive integers $a_1,\ldots,a_{k-1}$ with $a_i&lt;P; a_i \in \mathbb{N}$ and let $a_0 = S; S < P$</li>
-							<li>Build the polynomial $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1}$</li>
-							<li>Construct any $n$ points, for instance, set $i=1,\ldots,n$ to retrieve $(i,f(i))$</li>
+              <li>Choose at random $k-1$ positive integers $a_1,\ldots,a_{k-1}$ with 0 &lt; $a_i &lt; P; a_i \in \mathbb{N}$ and let $a_0 = S; S < P$</li>
+							<li>Build the polynomial $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \mod P$</li>
+							<li>Construct any $n$ points, <em>for instance</em>, set $i=1,\ldots,n$ to retrieve $(i,f(i))$</li>
 						</ul>
+						<aside class="notes">
+							<ul>
+								<li>And here is the fine print.</li>
+								<li>a_i must be natural number less than prime modulus P</li>
+								<li>Note the mod P. More on that later.</li>
+								<li>Note that we may choose any x for f(x).</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -215,7 +271,7 @@
 
 						<aside class="notes">
 							<ul>
-								<li>We have two equations and two variables. We can find $a$ and $b$</li>
+								<li>We have two equations and two variables. We can find a and b</li>
 								<li>There are other methods.</li>
 								<li>Not computationally efficient. LaGrange interpolation.</li>
 							</ul>
@@ -227,7 +283,7 @@
 						\[b = 16a - 22\]
 						<aside class="notes">
 							<ul>
-							<li>Substite $b$ into the second equation.</li>
+							<li>Substite b into the second equation.</li>
 							</ul>
 						</aside>
 					</section>
@@ -264,9 +320,9 @@
 				</section>
 
 				<!--
-						********
-						Examples
-						********
+						************************************
+						Billions and Billions of Polynomials
+						************************************
 				-->
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
@@ -275,51 +331,88 @@
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">Consider polyomials of degree 1, 2, and 3. In other words, $k$ is 2, 3, or 4.</p>
+						<p align="left">Consider polyomials of degree 1, 2, and 3. In other words, threshold $k$ is 2, 3, or 4.</p>
 						<ul>
 							<li>Suppose we have $j$ shares $S_1,\ldots,S_j$, where $j = k-1$</li>
 						  <li>Then suppose we have $j$ shares $S_1,\ldots,S_j$, where $j \ge k$</li>
 						</ul>
 						<aside class="notes">
 							<ul>
-								<li>Infinite number of curves passing through $k-1$ points.</li>
+								<li>Infinite number of curves passing through k-1 points.</li>
+								<li>If j < k we cannot construct the secret.</li>
+								<li>If j >= k we can construct the secret.</li>
 							</ul>
 						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/linear-1.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
+						<aside class="notes">
+							<ul>
+								<li>Infinite number of solutions contain this point.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/linear-2.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
+						<aside class="notes">
+							<ul>
+								<li>Degree 1 requires two points to define a line.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/quadratic-1.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
+						<aside class="notes">
+							<ul>
+								<li>Degree 2: Infinite number of solutions contain these two points.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/quadratic-2.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
+						<aside class="notes">
+							<ul>
+								<li>Degree 2 requires three points to define a parabola.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/quadratic-3.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
+						<aside class="notes">
+							<ul>
+								<li>Example of (k,n) = (3,6). 6 shares shown.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/cubic-1.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
+						<aside class="notes">
+							<ul>
+								<li>Degree 3: Infinite number of solutions contain these three points.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/cubic-2.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<!-- Just the background here -->
+						<aside class="notes">
+							<ul>
+								<li>Degree 3 requires four points to define a cubic.</li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 
 				<!--
-					*******************************
-					What if we have only one point?
-					*******************************
+					***********
+					The Problem
+					***********
 				-->
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
@@ -327,7 +420,7 @@
             <h3>Information Leakage</h3>
 						<aside class="notes">
 							<ul>
-								<li>But where are the prime numbers?</li>
+								<li>Recall the prime numbers? Stay tuned...</li>
 							</ul>
 						</aside>
 					</section>
@@ -335,6 +428,11 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Suppose Eve has managed to obtain a share, say $P=(16, 106)$.</p>
 						<p align="left">She knows $f(x) = ax + b$</p>
+						<aside class="notes">
+							<ul>
+								<li>x, f(x), and k are public knowledge encoded in the share.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -345,6 +443,12 @@
 								b    &amp; = -16a + 106
 						\end{align}
             <p align="left">Recall the requirement that $a,b \in \mathbb{N}$.</p>
+						<aside class="notes">
+							<ul>
+								<li>So Eve now can substitute all known values of a.</li>
+								<li>Eve knows the requirement a,b > 0.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -361,7 +465,9 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
-								<li>But recall that $a_i \in \mathbb{N}$</li>
+								<li>But recall that a,b in N?</li>
+								<li>All values of a > 6 result in b < 0.</li>
+								<li>So Eve knows 0 < a <= 6</li>
 							</ul>
 						</aside>
 					</section>
@@ -372,6 +478,11 @@
 						a &amp; \in [0,1,2,3,4,5,6] \\
 						b &amp; \in [106,90,74,58,42,26,10]
 						\end{align}
+						<aside class="notes">
+							<ul>
+								<li>But wait..! Theres more!</li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 
@@ -384,31 +495,52 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
             <h1>The Solution</h1>
 						<h3>Finite Field</h3>
+						<aside class="notes">
+							<ul>
+								<li>What is a finite field anyway?</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="images/background-clock.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<aside class="notes">
+							<ul>
+								<li>A common example of finite field is given by the integers mod P when P is a prime number.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $p$ where $S \lt p$ and $p$ is prime.</p>
+						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $P$ where $S \lt P$ and $P$ is prime.</p>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">Since $S=42$, choosing $p=43$ satisfies the requirement that $S \lt p$ and $p$ is prime.</p>
+						<p align="left">Since $S=42$, choosing $P=43$ satisfies the requirement that $S \lt P$ and $P$ is prime.</p>
 						\[\begin{align}
 								f(x)  &amp; = 4x + 42 \mod 43 \\
 								f(16) &amp; = 4(16) + 42 \mod 43 \\
 								      &amp; = 106 \mod 43 \\
 								f(16) &amp; = 20
 						\end{align}\]
+						<aside class="notes">
+							<ul>
+								<li>Recall our secret S is 42.</li>
+								<li>P=43 is prime</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Recall from the definition of a modulus that</p>
 						\begin{align}
-							a \mod p = a - pm \mid 0 \leq a - pm \leq p \\
+							a \mod P = a - Pm \mid 0 \leq a - pm \leq P \\
 						\end{align}
 						<p align="left">In other words, $m$ is a multiplier.</p>
+						<aside class="notes">
+							<ul>
+								<li>This observation is axiomatic.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -422,7 +554,8 @@
 						\end{align}\]
 						<aside class="notes">
 							<ul>
-								<li>But $f(x) \mod p$ can be written $f(x) - pm$ where $m$ is a multiplier.</li>
+								<li>Eve can approach the problem the same as before.</li>
+								<li>But f(x) mod P can be written f(x) - Pm where m is a multiplier.</li>
 							</ul>
 						</aside>
 					</section>
@@ -441,7 +574,9 @@
 						<aside class="notes">
 							<ul>
 								<li>See how Eve cannot gain any information about the secret?</li>
-								<li>$m$ is still unknown.</li>
+								<li>m is still unknown.</li>
+								<li>But we know a=4 so we can see that -44 + 43m satisfies our equation.</li>
+								<li>In other words, m=2</li>
 							</ul>
 						</aside>
 					</section>
