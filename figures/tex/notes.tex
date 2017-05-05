@@ -2,6 +2,7 @@
 % Calculate period of CPU clock cycles.
 %
 \documentclass[preview,border=3mm]{article}
+\usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{fancyhdr}
 \usepackage{lipsum}
@@ -18,10 +19,38 @@
 \begin{document}
 
 % Custom equation counter. Currently does nothing different.
-\setcounter{equation}{0}
-\renewcommand{\theequation}{\arabic{equation}}
+%\setcounter{equation}{0}
+%\renewcommand{\theequation}{\arabic{equation}}
 
-\section{Linear Polynomial}
+%%%%%%%%%%%%%%%%%%%%%
+\section{Polynomials}
+%%%%%%%%%%%%%%%%%%%%%
+\noindent
+This is the general form of a polynomial of degree $k$.
+\begin{align*}
+    f(x) &= a_0 + a_1x + a_2x^2 + a_3x^3 + \ldots + a_kx^k\\
+\end{align*}
+
+\noindent
+Or, more generally\dots
+
+\begin{align*}
+    f(x) &= \sum\limits_{k=0}^n a_kx^k
+\end{align*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Curve Fitting}
+%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+A polynomial of degree $n$ may be uniquely defined given $n+1$ points on the
+line. An infinite number of lines will intersect only $n$ points. These lines
+may be found by solving the simultaneous equations for the points provided.
+
+\noindent
+These are the points used in the slides.
+
+\subsection{Linear Polynomial}
 
 %\lipsum
 \noindent
@@ -65,7 +94,7 @@ Now we may substitute $b$ from equation \ref{eq2} into equation \ref{eq1}.
 Equation \ref{eq3} describes all lines passing through point $P = (-17, -26)$.\\
 
 
-\section{Quadratic Polynomial}
+\subsection{Quadratic Polynomial}
 
 \noindent
 A second degree, or quadratic, polynomial is represented as
@@ -146,7 +175,7 @@ Equation \ref{eq10} is the set of quadratic curves that pass through points
 $P_1 = (2, 76)$ and $P_2 = (5, 232)$.
 
 
-\section{Cubic Polynomial}
+\subsection{Cubic Polynomial}
 
 \noindent
 A third degree, or cubic, polynomial is represented as:
@@ -228,18 +257,56 @@ so here is the result without further ceremony:
 \end{align}
 
 
-\section{Polynomials}
-\noindent
-This is the general form of a polynomial of degree $k$.
-\begin{align*}
-    f(x) &= a_0 + a_1x + a_2x^2 + a_3x^3 + \ldots + a_kx^k\\
-\end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Shamir Secret Sharing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Mathematical Definition}
+
+Divide secret $S$ into $n$ parts $S_1,\ldots,S_n$ such that
+
+\begin{itemize}
+    \item Knowledge of any $k$ or more $S_i$ makes secret $S$ computable.
+    \item Knowledge of any $k-1$ or less $S_i$ leaves secret $S$ completely undetermined.
+\end{itemize}
 
 \noindent
-Or, more generally\dots
+This is called a $(k,n)$ threshold scheme.\\
 
-\begin{align*}
-    f(x) &= \sum\limits_{k=0}^n a_kx^k
-\end{align*}
+\noindent
+The essential idea is that $k$ points are required to define a polynomial of
+degree $k-1$.\\
+
+\noindent
+For our purposes we can define a polynomial as follows:
+
+\begin{align}
+    f(x) &= a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \\
+    f(x0 &= \sum_{i=0}^{k-1} a_ix^i
+\end{align}
+
+\noindent
+Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an
+element in a finite field $\mathbb{F}$ of size $P$ where
+$0 < k \leq n < P; S < P$ and $P$ is a prime number.
+
+\begin{itemize}
+    \item Choose at random $k-1$ positive integers $a_1, \ldots a_{k-1}$
+        with $0 < a_i < P; a_i \in \mathbb{N}$ and let $a_0 = S; S < P$.
+    \item Build the polynomial
+        $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \mod P$
+    \item Construct any $n$ points, \emph{for instance}, set $i = 1, \ldots , n$
+        to retrieve $(i, f(i))$.
+\end{itemize}
+
+\noindent
+Every participant is given a point, a point, e.g.\ in integer input to the
+polynomial and the corresponding integer output.
+
+\noindent
+Given any subset $k$ of these pairs, we can find the coefficients of the
+polynomial. The secret is the constant term $a_0$.
+
+
 
 \end{document}
