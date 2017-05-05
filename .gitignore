@@ -1,6 +1,11 @@
 reveal.js/MathJax/
 reveal.js/*.log
 figures/gnuplot/*png
+figures/tex/*aux
+figures/tex/*dvi
+figures/tex/*log
+figures/tex/*pdf
+figures/tex/*ps
 .idea/
 *.iml
 *.iws
