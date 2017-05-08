@@ -156,12 +156,17 @@
 				-->
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-            <h1>Shamir Secret Sharing</h1>
+						<h1>Shamir Secret Sharing</h1>
 						<h3>Mathematical Definition</h3>
-          </section>
+						<aside class="notes">
+							<ul>
+								<li>Okay, bear with me!</li>
+							</ul>
+						</aside>
+					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-            <h3>Shamir Secret Sharing</h3>
+						<h3>Shamir Secret Sharing</h3>
 						<p align="left">Divide secret $S$ into $n$ pieces of data $S_1,\ldots,S_n$ such that</p>
 						<ul>
 							<li>Knowledge of any $k$ or more $S_i$ makes $S$ computable.</li>
@@ -190,6 +195,8 @@
 						<aside class="notes">
 							<ul>
 								<li>Where k is the threshold.</li>
+								<li>Note that we slightly tweeked the representation of the polynomial to include the threshold.</li>
+								<li>The degree of the polynomial is k-1.</li>
 							</ul>
 						</aside>
 					</section>
@@ -200,7 +207,8 @@
 						<aside class="notes">
 							<ul>
 								<li>Note the appearance of the prime number. For diffusion.</li>
-								<li>The secret must have equal likelyhood of being any element of the finite field.</li>
+								<li>The secret must have equal likelihood of being any element of the finite field.</li>
+								<li>More on that important topic later.</li>
 							</ul>
 						</aside>
 					</section>
@@ -240,7 +248,14 @@
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Computing the secret</h1>
-            <h3>For Humans</h3>
+						<h3>For Humans</h3>
+						<aside class="notes">
+							<ul>
+								<li>Here we will solve for the secret using simultaneous equations.</li>
+								<li>Simultaneous equations are not computationally efficient.</li>
+								<li>LaGrange interpolation is the computationally efficient approach.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -283,9 +298,11 @@
 
 						<aside class="notes">
 							<ul>
-								<li>We have two equations and two variables. We can find a and b</li>
-								<li>There are other methods.</li>
-								<li>Not computationally efficient. LaGrange interpolation.</li>
+								<li>We have two equations and two variables.</li>
+								<li>We can write a system of simultaneous equations and solve for a and b</li>
+								<li>As previously mentioned...</li>
+								<li>This is not computationally efficient.</li>
+								<li>LaGrange interpolation is the way to approach this in software.</li>
 							</ul>
 						</aside>
 					</section>
@@ -295,7 +312,7 @@
 						\[b = 16a - 22\]
 						<aside class="notes">
 							<ul>
-							<li>Substite b into the second equation.</li>
+							<li>Now that we have solved for b in terms of a, we can substitute it into the second equation to find a.</li>
 							</ul>
 						</aside>
 					</section>
@@ -308,6 +325,11 @@
 						a &amp;= 26-22 \\
 						a &amp;= 4
 						\end{align}
+						<aside class="notes">
+							<ul>
+								<li>And now we know that a=4.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -318,6 +340,12 @@
 						P1 \rightarrow f(-16) = -22  &amp;= 4(-16) + b \\
 						b    &amp;= 42
 						\end{align}
+						<aside class="notes">
+							<ul>
+								<li>Given two points on a linear polynomial we have constructed the secret b=42.</li>
+								<li>Generally, if we have n+1 points we can solve for the polynomial.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -328,6 +356,11 @@
 						b &amp;= 64 - 22 \\
 						b &amp;= 42
 						\end{align}
+						<aside class="notes">
+							<ul>
+								<li>Or we could have done this...</li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 
@@ -339,7 +372,15 @@
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Billions and Billions of Polynomials</h1>
-            <h3>Carl Sagan</h3>
+						<h3>Carl Sagan</h3>
+						<aside class="notes">
+							<ul>
+								<li>Yeah but if I have one point it can't be that hard to find another one.</li>
+								<li>Can it?</li>
+								<li>Remember that these examples are simple and contrived.</li>
+								<li>A real application will use very large random numbers as coefficients. Our secret and prime modulus will also be very large.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -361,7 +402,8 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Infinite number of solutions contain this point.</li>
+								<li>Infinite number of linear polynomials intersect this point.</li>
+								<li>What happens if we specify a second point?</li>
 							</ul>
 						</aside>
 					</section>
@@ -370,7 +412,7 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Degree 1 requires two points to define a line.</li>
+								<li>Two points are required to uniquely define a polynomial of degree 1.</li>
 							</ul>
 						</aside>
 					</section>
@@ -379,7 +421,8 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Degree 2: Infinite number of solutions contain these two points.</li>
+								<li>Degree 2: Infinite number of quadratic polynomials intersect these two points.</li>
+								<li>What happens if we specify a third point?</li>
 							</ul>
 						</aside>
 					</section>
@@ -388,7 +431,7 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Degree 2 requires three points to define a parabola.</li>
+								<li>Three points are required to uniquely define a parabola.</li>
 							</ul>
 						</aside>
 					</section>
@@ -406,7 +449,8 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Degree 3: Infinite number of solutions contain these three points.</li>
+								<li>Degree 3: Infinite number of cubic polynomials intersect these three points.</li>
+								<li>What happens of we specify a fourth point?</li>
 							</ul>
 						</aside>
 					</section>
@@ -415,7 +459,8 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Degree 3 requires four points to define a cubic.</li>
+								<li>Four points are required to uniquely define a cubic polynomial.</li>
+								<li>Getting the point?</li>
 							</ul>
 						</aside>
 					</section>
@@ -492,6 +537,8 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
+								<li>Information has leaked.</li>
+								<li>Eve has been able to gain information about the secret.</li>
 								<li>But wait..! Theres more!</li>
 							</ul>
 						</aside>
@@ -551,6 +598,7 @@
 						<aside class="notes">
 							<ul>
 								<li>This observation is axiomatic.</li>
+								<li>Let that soak in for a minute.</li>
 							</ul>
 						</aside>
 					</section>
@@ -566,8 +614,10 @@
 						\end{align}\]
 						<aside class="notes">
 							<ul>
+								<li>The polynomial and prime number P are public.</li>
 								<li>Eve can approach the problem the same as before.</li>
 								<li>But f(x) mod P can be written f(x) - Pm where m is a multiplier.</li>
+								<li>m is unknown to Eve.</li>
 							</ul>
 						</aside>
 					</section>
@@ -585,8 +635,10 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
+								<li>This time, no information is leaked.</li>
 								<li>See how Eve cannot gain any information about the secret?</li>
 								<li>m is still unknown.</li>
+								<li>All secrets are required to discover the value of m.</li>
 								<li>But we know a=4 so we can see that -44 + 43m satisfies our equation.</li>
 								<li>In other words, m=2</li>
 							</ul>
@@ -597,6 +649,8 @@
 						<p align="left">The secret $S$ is equally likely to be any element of the finite field $\mathbb{F}$. No information may be learned about $S$ unless $S_1 \ldots S_k$ are known.</p>
 						<aside class="notes">
 							<ul>
+								<li>The addition of the modulus of a prime number solves the information leakage problem.</li>
+								<li>Let that soak in for a moment.</li>
 								<li>Last Slide</li>
 							</ul>
 						</aside>
@@ -610,8 +664,7 @@
 					<aside class="notes">
 						<ul>
 							<li>Summary</li>
-              <li>Mathematical protocol for a (k,n) threshold sharing scheme built on polynomials and finite field mathematics to diffuse the secret.</li>
-							<li>Questions?</li>
+							<li>Shamir Secret Sharing is a mathematical protocol for a (k,n) threshold sharing scheme built on polynomials and finite field mathematics to diffuse the secret.</li>
 						</ul>
 					</aside>
 					</section>
@@ -627,6 +680,11 @@
 						<h1>Shamir</h1>
 						<h1>Secret</h1>
 						<h1>Sharing</h1>
+						<aside class="notes">
+							<ul>
+								<li>Questions?</li>
+							</ul>
+						</aside>
 					</section
 				</section>
 			</div>
