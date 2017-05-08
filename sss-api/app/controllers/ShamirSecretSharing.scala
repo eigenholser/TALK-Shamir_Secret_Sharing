@@ -13,9 +13,12 @@ import scala.concurrent.{ExecutionContext, Future, Promise}
 import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 import org.mitre.secretsharing.{Part, Secrets}
+import constants.SSSConstants
+import services.ConstructSecret
 
 // Represents the request body for split.
 case class Secret(required: Int, total: Int, secret: String)
+case class Share(share: String)
 
 /**
  * This controller implements Shamir Secret Sharing methods `split` and `join`.
@@ -27,8 +30,9 @@ case class Secret(required: Int, total: Int, secret: String)
  * asynchronous code.
  */
 @Singleton
-class ShamirSecretSharing @Inject() (actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends Controller {
-  implicit val splitFmt = Json.format[Secret]
+class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: ConstructSecret)(implicit exec: ExecutionContext) extends Controller {
+  implicit val secretFmt = Json.format[Secret]
+  implicit val shareFmt = Json.format[Share]
   val logger = LoggerFactory.getLogger(classOf[ShamirSecretSharing])
 
   /**
@@ -100,6 +104,43 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem)(implicit exec: Ex
         val msg = "Bad request"
         val result = Json.obj("status" -> "failure", "data" -> msg)
         Future(BadRequest(result))
+      }
+    }
+  }
+
+  def status = Action.async { implicit request =>
+    secretRepo.sufficientShares match {
+      case true => {
+        secretRepo secret match {
+          case Success(v) => {
+            logger.info(s"Constructed secret: $v")
+            Future(Ok)
+          }
+          case Failure(e) => {
+            logger.warn(s"Failed to consstruct secret: $e")
+            Future(InternalServerError)
+          }
+        }
+      }
+      case false => {
+        logger.warn("Insufficient shares to construct secret!")
+        Future(InternalServerError)
+      }
+    }
+  }
+
+  def add = Action.async { implicit request =>
+    request.body.asJson match {
+      case Some(body) => {
+        val share = body.as[Share]
+        secretRepo.add(share.share) match {
+          case SSSConstants.STATUS_INVALID_SHARE => Future(BadRequest)
+          case _ => Future(Ok)
+        }
+      }
+      case None => {
+        logger.warn("Bad request.")
+        Future(BadRequest)
       }
     }
   }
