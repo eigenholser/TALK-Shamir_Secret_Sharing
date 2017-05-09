@@ -38,10 +38,17 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
   /**
    * Split a secret into shares. Expect parameters as JSON:
    *
+   * POST
+   * Request Body:
    * {
    *   "required": 3,           // required to recover secret.
    *   "total": 5,              // total shares to create.
    *   "secret": "The Secret!"  // The secret.
+   * }
+   *
+   * Response
+   * {
+   *    "secret": "THE_CONSTRUCTED_SECRET"
    * }
    */
   def split = Action.async { implicit request =>
@@ -90,7 +97,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
         ) yield new Part(share)
         Try(new String(Secrets.join(parts).map(_.toChar))) match {
           case Success(secret) => {
-            Future(Ok(Json.obj("status" -> "success", "data" -> secret)))
+            Future(Ok(Json.obj("secret" -> secret)))
           }
           case Failure(e) => {
             val msg = s"Unable to reconstitute secret: ${e.getMessage}"
