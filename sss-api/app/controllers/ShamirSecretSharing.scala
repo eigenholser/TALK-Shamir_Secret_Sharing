@@ -117,6 +117,9 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
     }
   }
 
+  /**
+   * Secret status. Prototype for API requiring the secret.
+   */
   def status = Action.async { implicit request =>
     secretRepo.sufficientShares match {
       case true => {
@@ -138,6 +141,13 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
     }
   }
 
+  /**
+   * Add a share.
+   *
+   * {
+   *    "share": "THE_SHARE_TO_BE_ADDED"
+   * }
+   */
   def add = Action.async { implicit request =>
     request.body.asJson match {
       case Some(body) => {
