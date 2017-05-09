@@ -294,6 +294,7 @@
 							<ul>
 								<li>First degree polynomial.</li>
 								<li>How many points are necessary to describe a line?</li>
+								<li>Anyone?</li>
 								<li>Two. Degree + 1.</li>
 							</ul>
 						</aside>
@@ -354,7 +355,7 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
-								<li>And now we know that a=4.</li>
+								<li>And with a bit of algebra we know that a=4.</li>
 							</ul>
 						</aside>
 					</section>
@@ -370,7 +371,7 @@
 						<aside class="notes">
 							<ul>
 								<li>Given two points on a linear polynomial we have constructed the secret b=42.</li>
-								<li>Generally, if we have n+1 points we can solve for the polynomial.</li>
+								<li>Generally, if we have n+1 points, where n is degree, we can solve for the polynomial.</li>
 							</ul>
 						</aside>
 					</section>
@@ -449,7 +450,7 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Degree 2: Infinite number of quadratic polynomials intersect these two points.</li>
+								<li>Infinite number of quadratic polynomials intersect these two points.</li>
 								<li>What happens if we specify a third point?</li>
 							</ul>
 						</aside>
@@ -478,7 +479,7 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Degree 3: Infinite number of cubic polynomials intersect these three points.</li>
+								<li>Infinite number of cubic polynomials intersect these three points.</li>
 								<li>What happens of we specify a fourth point?</li>
 							</ul>
 						</aside>
@@ -517,6 +518,7 @@
 						<aside class="notes">
 							<ul>
 								<li>In a software implementation, x, f(x), and k are encoded into each share.</li>
+								<li>This means the polynomial form is known by the shareholder.</li>
 							</ul>
 						</aside>
 					</section>
@@ -531,7 +533,7 @@
             <p align="left">Recall the requirement that $a,b \in \mathbb{N}$.</p>
 						<aside class="notes">
 							<ul>
-								<li>So Eve now can substitute all known values of a.</li>
+								<li>So Eve now can substitute all values of a.</li>
 								<li>Eve knows the requirement a,b > 0.</li>
 							</ul>
 						</aside>
@@ -600,6 +602,11 @@
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $P$ where $S \lt P$ and $P$ is prime.</p>
+						<aside class="notes">
+							<ul>
+								<li>The problem of information leakage is solved with the finite field requirement.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -693,7 +700,8 @@
 					<aside class="notes">
 						<ul>
 							<li>Summary</li>
-							<li>Shamir Secret Sharing is a mathematical protocol for a (k,n) threshold sharing scheme built on polynomials and finite field mathematics to diffuse the secret.</li>
+							<li>Shamir Secret Sharing is a mathematical protocol for a (k,n) threshold secret sharing scheme built on polynomials and finite field mathematics.</li>
+							<li>Let that soak in for a moment.</li>
 						</ul>
 					</aside>
 					</section>
