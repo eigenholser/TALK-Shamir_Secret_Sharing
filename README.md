@@ -33,5 +33,9 @@ type `make`.
 There are [additional details on the mathematics](docs/notes.pdf) in the
 `tex` directory.  Build that into a PDF document by using the same
 incantation: `make`. You will, of course, need to have the dependent LaTeX
-tools installed. The PDF is in the ``docs`` directory.
+tools installed. The PDF is in the `docs` directory.
 
+# Documents
+
+See the `docs` directory for Adi Shamir's original November 1979 paper
+*How to Share a Secret* and some additional notes on the mathematics.
