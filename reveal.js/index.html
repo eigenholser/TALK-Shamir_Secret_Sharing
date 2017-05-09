@@ -77,6 +77,7 @@
 								<li>API endpoint for share submission.</li>
 								<li>API endpoint dependent on secret.</li>
 								<li>Application starts normally. Secret-dependent API does not work until threshold shares have been submitted.</li>
+								<li>Shares are cached in memory. Secret is computed on demand. Secret is never cached. JVM notwithstanding.</li>
 								<li>Go through the sequence of shell scripts to demo status, add partial, add invalid, and finally add threshold. Then check status again.</li>
 							</ul>
 						</aside>
