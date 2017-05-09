@@ -50,6 +50,7 @@
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>DEMO</h1>
+						<h3>Split and Join</h3>
 						<p align="left">This is our secret:</p>
 						<pre>The secret number is 42</pre>
 						<aside class="notes">
@@ -59,7 +60,24 @@
 								<li>Join 5 shares: <pre>sh join.sh</pre></li>
 								<li>Join 3 shares.</li>
 								<li>Join 2 shares. Note failure.</li>
-                <li>Consider system design that requires shareholder "consent" to become functional.</li>
+								<li>Consider system design that requires shareholder "consent" to become functional.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h1>DEMO</h1>
+						<h3>Initialize API</h3>
+						<p align="left">A design idea for how Shamir Secret Sharing might be used in an API that requires access to a secret, a Bitcoin private key, for instance.</p>
+						<p align="left">This is our secret:</p>
+						<pre>The secret number is 42</pre>
+						<aside class="notes">
+							<ul>
+								<li>Web front-end requiring login for our service. Use case is shareholder submissions for secret construction.</li>
+								<li>API endpoint for share submission.</li>
+								<li>API endpoint dependent on secret.</li>
+								<li>Application starts normally. Secret-dependent API does not work until threshold shares have been submitted.</li>
+								<li>Go through the sequence of shell scripts to demo status, add partial, add invalid, and finally add threshold. Then check status again.</li>
 							</ul>
 						</aside>
 					</section>
