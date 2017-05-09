@@ -39,17 +39,21 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
    * Split a secret into shares. Expect parameters as JSON:
    *
    * POST
-   * Request Body:
+   * Response:
    * {
    *   "required": 3,           // required to recover secret.
    *   "total": 5,              // total shares to create.
    *   "secret": "The Secret!"  // The secret.
    * }
    *
-   * Response
-   * {
-   *    "secret": "THE_CONSTRUCTED_SECRET"
-   * }
+   * Response:
+   * [
+   *   "share1",
+   *   "share2",
+   *   ...,
+   *   "shareN"
+   * ]
+   *
    */
   def split = Action.async { implicit request =>
     request.body.asJson match {
@@ -79,12 +83,19 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
    * Join shares and recover secret. Expect shares as JSON array in request
    * body:
    *
+   * POST
+   * Request body:
    * [
    *   "share1",
    *   "share2",
    *   ...,
    *   "shareN"
    * ]
+   *
+   * Response:
+   * {
+   *    "secret": "The Secret!"
+   * }
    */
   def join = Action.async { implicit request =>
     request.body.asJson match {

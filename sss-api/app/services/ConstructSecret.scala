@@ -13,6 +13,14 @@ class ConstructSecret {
   val logger = LoggerFactory.getLogger(classOf[ConstructSecret])
   var sufficientShares = false
 
+  /**
+   * Add a single share. Test for validity by instantiating a new Part(). Do
+   * not accept duplicate shares. Do not accept shares beyond that required to
+   * construct the secret.
+   *
+   * @param share String
+   * @return code Int
+   */
   def add(share: String): Int = {
     sufficientShares match {
       case true => SSSConstants.STATUS_SUFFICIENT_SHARES
@@ -46,6 +54,10 @@ class ConstructSecret {
     }
   }
 
+  /**
+   * Construct the secret from available shares. If it fails, our shares are
+   * not all available or are incorrect.
+   */
   def secret(): Try[String] = Try {
     val parts = scala.collection.mutable.ArrayBuffer.empty[Part]
     (for (share <- shares) yield new Part(share)) map {x => parts += x}
