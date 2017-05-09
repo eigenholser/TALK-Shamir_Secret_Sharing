@@ -22,7 +22,9 @@ case class Share(share: String)
 
 /**
  * This controller implements Shamir Secret Sharing methods `split` and `join`.
- * that split a secret into shares and combine shares into a secret.
+ * that split a secret into shares and combine shares into a secret. It also
+ * implements `add` and `status` as a proof of concept for how Shamir Secret
+ * Sharing might be used in practice.
  *
  * @param actorSystem We need the `ActorSystem`'s `Scheduler` to
  * run code after a delay.
