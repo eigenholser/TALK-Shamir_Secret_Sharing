@@ -54,6 +54,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
         logger.debug(s"Creating $total shares, $required shares needed to recover secret.")
         // TODO: Handle errors like join below.
         val shares = Secrets.split(secret, total, required, new Random())
+        logger.warn("If this were a real application we would not be logging the shares!")
         shares foreach {x => logger.debug(s"Share: $x")}
         // Is this the conanoical approach? Looks goofy.
         Future(Ok(JsArray(for(share <- shares) yield JsString(share.toString))))
@@ -82,6 +83,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
     request.body.asJson match {
       case Some(body) => {
         val shares = body.as[Array[String]]
+        logger.warn("If this were a real application we would not be logging the shares!")
         shares foreach {x => logger.debug(s"Share: $x")}
         val parts: Array[Part] = for (
           share <- shares
