@@ -187,6 +187,7 @@
 						<aside class="notes">
 							<ul>
 								<li>Okay, bear with me!</li>
+								<li>There be details coming...</li>
 							</ul>
 						</aside>
 					</section>
@@ -201,6 +202,7 @@
 						<p align="left">This is called a $(k,n)$ threshold scheme.</p>
 						<aside class="notes">
 							<ul>
+								<li>k is the threshold, i.e. the number of participants required to construct the secret..</li>
 								<li>If k=n, all participants are required to construct the secret.</li>
 							</ul>
 						</aside>
@@ -232,7 +234,7 @@
 						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $\mathbb{F}$ of size $P$ where $0 < k \leq n < P; S < P\;$ and $P$ is a prime number.</p>
 						<aside class="notes">
 							<ul>
-								<li>Note the appearance of the prime number. For diffusion.</li>
+								<li>Note the appearance of the prime number.</li>
 								<li>The secret must have equal likelihood of being any element of the finite field.</li>
 								<li>More on that important topic later.</li>
 							</ul>
@@ -326,8 +328,7 @@
 							<ul>
 								<li>We have two equations and two variables.</li>
 								<li>We can write a system of simultaneous equations and solve for a and b</li>
-								<li>As previously mentioned...</li>
-								<li>This is not computationally efficient.</li>
+								<li>As previously mentioned... This is not computationally efficient.</li>
 								<li>LaGrange interpolation is the way to approach this in software.</li>
 							</ul>
 						</aside>
@@ -403,7 +404,7 @@
 							<ul>
 								<li>Yeah but if I have one point it can't be that hard to find another one.</li>
 								<li>Can it?</li>
-								<li>Remember that these examples are simple and contrived.</li>
+								<li>Remember that these examples are contrived and simple.</li>
 								<li>A real application will use very large random numbers as coefficients. Our secret and prime modulus will also be very large.</li>
 							</ul>
 						</aside>
@@ -417,6 +418,7 @@
 						</ul>
 						<aside class="notes">
 							<ul>
+								<li>In other words, we have less than the threshold and then greater than or equal to the threshold.</li>
 								<li>Infinite number of curves passing through k-1 points.</li>
 								<li>If j < k we cannot construct the secret.</li>
 								<li>If j >= k we can construct the secret.</li>
@@ -466,6 +468,7 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
+								<li>This is the same quadratic with multiple points shown.</li>
 								<li>Example of (k,n) = (3,6). 6 shares shown.</li>
 							</ul>
 						</aside>
@@ -513,7 +516,7 @@
 						<p align="left">She knows $f(x) = ax + b$</p>
 						<aside class="notes">
 							<ul>
-								<li>x, f(x), and k are public knowledge encoded in the share.</li>
+								<li>In a software implementation, x, f(x), and k are encoded into each share.</li>
 							</ul>
 						</aside>
 					</section>
