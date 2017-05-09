@@ -18,7 +18,7 @@ from the shares.
 
 The second part is a proof of concept that demonstrates how we might implement
 a mechanism for adding shares to a service that requires a secret. This is the
-`add` API endpoinnt. The `status` endpoint represents an API that might
+`add` API endpoint. The `status` endpoint represents an API that might
 require the secret to service it's requests. When the threshold of shares is
 made available via `add`, `status` will construct the secret and return it.
 
