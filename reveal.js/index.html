@@ -242,8 +242,8 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
-								<li>Where k is the threshold.</li>
 								<li>Note that we slightly tweeked the representation of the polynomial to include the threshold.</li>
+								<li>Where k is the threshold.</li>
 								<li>The degree of the polynomial is k-1.</li>
 							</ul>
 						</aside>
@@ -375,7 +375,7 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
-								<li>And with a bit of algebra we know that a=4.</li>
+								<li>And with a bit of algebra we can find that a=4.</li>
 							</ul>
 						</aside>
 					</section>
@@ -608,7 +608,30 @@
 						<h3>Finite Field</h3>
 						<aside class="notes">
 							<ul>
-								<li>What is a finite field anyway?</li>
+								<li>Information leakage is a big problem.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h1>The Solution</h1>
+						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $P$ where $S \lt P$ and $P$ is prime.</p>
+						<aside class="notes">
+							<ul>
+								<li>Ah..., but what the heck is a finite field?</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
+						<h1>Finite Fields</h1>
+						<ul>
+							<li>The simplest example is a finite field of size $P$, where $P$ is a prime number, that may be constructed as integers modulo $P$.</li>
+							<li>The elements of such a field may be represented by integers in the range $0,\ldots,P − 1$.</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>This is the type of finite field used in Shamir Secret Sharing.</li>
 							</ul>
 						</aside>
 					</section>
@@ -616,17 +639,8 @@
 					<section data-background="images/background-clock.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<aside class="notes">
 							<ul>
-								<li>A common example of finite field is given by the integers mod P when P is a prime number.</li>
 								<li>Is this beginning to look a bit like Diffie Hellman?</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $P$ where $S \lt P$ and $P$ is prime.</p>
-						<aside class="notes">
-							<ul>
-								<li>The problem of information leakage is solved with the finite field requirement.</li>
+								<li>The clock is not a good example because 12 is not a prime number. But you get the idea.</li>
 							</ul>
 						</aside>
 					</section>
@@ -641,6 +655,7 @@
 						\end{align}\]
 						<aside class="notes">
 							<ul>
+								<li>So let's compute a new point for Eve to use.</li>
 								<li>Recall our secret S is 42.</li>
 								<li>P=43 is prime</li>
 							</ul>
