@@ -1,4 +1,3 @@
-reveal.js/MathJax/
 reveal.js/*.log
 figures/gnuplot/*png
 figures/tex/*aux
