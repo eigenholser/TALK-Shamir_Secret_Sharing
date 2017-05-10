@@ -43,7 +43,8 @@
 					<aside class="notes">
 						<ul>
 							<li>Microphone volume.</li>
-							<li>Speaker Volume. Cool kids in the back.</li>
+							<li>Speaker Volume.</li>
+							<li>Check with kool kids in the back.</li>
 							<li>Introduction</li>
 							<li>We'll begin with a demo.</li>
 							<li>Explore the mathematics behind Shamir Secret Sharing.</li>
@@ -65,9 +66,11 @@
 						<aside class="notes">
 							<ul>
 								<li>Start API: <pre>sbt run</pre></li>
-								<li>Split into 3/5 shares: <pre>sh split.sh > shares.json</pre></li>
-								<li>Join 5 shares: <pre>sh join.sh</pre></li>
+								<li>Split into 3/5 shares: <pre>sh splitSecret.sh > shares.json</pre></li>
+								<li>Join 5 shares: <pre>sh joinShares.sh</pre></li>
+								<li>Edit shares.json</li>
 								<li>Join 3 shares.</li>
+								<li>Edit shares.json</li>
 								<li>Join 2 shares. Note failure.</li>
 								<li>So what...?</li>
 							</ul>
@@ -160,6 +163,7 @@
 						<aside class="notes">
 							<ul>
 								<li>Expressed as the sum of all products of the coefficient and x raised to a power corresponding to it's term number.</li>
+								<li>n+1 points are required to uniquely identify the polynomial. Degree + 1.</li>
 							</ul>
 						</aside>
 					</section>
@@ -204,6 +208,7 @@
 						<p align="left">This is called a $(k,n)$ threshold scheme.</p>
 						<aside class="notes">
 							<ul>
+								<li>The objective is to divide the secret S...</li>
 								<li>k is the threshold, i.e. the number of participants required to construct the secret..</li>
 								<li>If k=n, all participants are required to construct the secret.</li>
 							</ul>
@@ -338,7 +343,7 @@
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">We can solve the equations for $b$:</p>
+						<p align="left">We can solve the first equation for $b$ in terms of $a$:</p>
 						\[b = 16a - 22\]
 						<aside class="notes">
 							<ul>
@@ -421,7 +426,7 @@
 						</ul>
 						<aside class="notes">
 							<ul>
-								<li>In other words, we have less than the threshold and then greater than or equal to the threshold.</li>
+								<li>Stated differently, we have less than the threshold and then greater than or equal to the threshold.</li>
 								<li>Infinite number of curves passing through k-1 points.</li>
 								<li>If j < k we cannot construct the secret.</li>
 								<li>If j >= k we can construct the secret.</li>
@@ -509,6 +514,7 @@
             <h3>Information Leakage</h3>
 						<aside class="notes">
 							<ul>
+								<li>But this approach has a problem. Information leakage.</li>
 								<li>Recall the prime numbers? Stay tuned...</li>
 							</ul>
 						</aside>
