@@ -57,7 +57,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
    * ]
    *
    */
-  def split = Action.async { implicit request =>
+  def splitSecret = Action.async { implicit request =>
     request.body.asJson match {
       case Some(body) => {
         val reqBody = body.as[Secret]
@@ -99,7 +99,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
    *    "secret": "The Secret!"
    * }
    */
-  def join = Action.async { implicit request =>
+  def joinShares = Action.async { implicit request =>
     request.body.asJson match {
       case Some(body) => {
         val shares = body.as[Array[String]]
@@ -131,9 +131,10 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
   }
 
   /**
-   * Secret status. Prototype for API requiring the secret.
+   * Prototype for an API endpoint that requires the secret to perform it's
+   * function.
    */
-  def status = Action.async { implicit request =>
+  def apiThatRequiresSecret = Action.async { implicit request =>
     secretRepository.secret match {
       case Some(v) => {
         logger.info(s"Secret is available: $v")
@@ -147,13 +148,14 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
   }
 
   /**
-   * Add a share.
+   * Consent authorized by shareholder. Normally this would be authenticated.
+   * This would constitute consent by the shareholder to generating the secret.
    *
    * {
    *    "share": "THE_SHARE_TO_BE_ADDED"
    * }
    */
-  def add = Action.async { implicit request =>
+  def consentShare = Action.async { implicit request =>
     request.body.asJson match {
       case Some(body) => {
         val share = body.as[Share]

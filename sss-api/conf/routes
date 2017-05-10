@@ -1,5 +1,5 @@
-POST    /split                  @controllers.ShamirSecretSharing.split()
-POST    /join                   @controllers.ShamirSecretSharing.join()
-POST    /add                    @controllers.ShamirSecretSharing.add()
-GET     /status                 @controllers.ShamirSecretSharing.status()
+POST    /splitSecret                  @controllers.ShamirSecretSharing.splitSecret()
+POST    /joinShares                   @controllers.ShamirSecretSharing.joinShares()
+POST    /consentShare                 @controllers.ShamirSecretSharing.consentShare()
+GET     /apiThatRequiresSecret        @controllers.ShamirSecretSharing.apiThatRequiresSecret()
 #GET     /swagger.json           controllers.ApiHelpController.getResources
