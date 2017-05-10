@@ -31,37 +31,42 @@
 			-->
 			<div class="slides">
 
-				<!--
-					***********
-					Venue Slide
-					***********
-				-->
-				<section data-background="images/venue.png" data-background-size="contain" data-transition="fade-in fade-out">
-					<aside class="notes">
-						<ul>
-							<li>Lights.</li>
-							<li>Microphone volume.</li>
-							<li>Speaker Volume.</li>
-							<li>Check with kool kids in the back for volume.</li>
-					</aside>
-				</section>
+				<section data-transition="zoom-in fade-out">
+					<!--
+						***********
+						Venue Slide
+						***********
+					-->
+					<section data-background="images/venue.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<aside class="notes">
+							<ul>
+								<li>Preflight checklist:</li>
+								<li>Setup terminals for demo.</li>
+								<li>Lights.</li>
+								<li>Microphone volume.</li>
+								<li>Speaker Volume.</li>
+								<li>Check with kool kids in the back for volume.</li>
+						</aside>
+					</section>
 
-				<!--
-					***********
-					Title Slide
-					***********
-				-->
-				<section data-background="figures/gnuplot/background-title.png" data-background-size="contain" data-transition="fade-in fade-out">
-					<h1>Shamir</h1>
-					<h1>Secret</h1>
-					<h1>Sharing</h1>
-					<aside class="notes">
-						<ul>
-							<li>Introduction</li>
-							<li>We'll begin with a demo.</li>
-							<li>Explore the mathematics behind Shamir Secret Sharing.</li>
-						</ul>
-					</aside>
+					<!--
+						***********
+						Title Slide
+						***********
+					-->
+					<section data-background="figures/gnuplot/background-title.png" data-background-size="contain" data-transition="fade-in fade-out">
+						<h1>Shamir</h1>
+						<h1>Secret</h1>
+						<h1>Sharing</h1>
+						<aside class="notes">
+							<ul>
+								<li>Introduction</li>
+								<li>We'll begin with a demo.</li>
+								<li>Explore the mathematics behind Shamir Secret Sharing.</li>
+								<li>Anecdotes.</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 
 				<!--
@@ -116,7 +121,7 @@
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Polynomials</h1>
-            <h3>A gentle introduction</h3>
+						<h3>A gentle introduction</h3>
 						<aside class="notes">
 							<ul>
 								<li>Shamir Secret Sharing is implemented using polynomials.</li>
@@ -168,7 +173,7 @@
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Generally</h3>
-            <p align="left">A polynomial of degree $n$ may be expressed like this:</p>
+						<p align="left">A polynomial of degree $n$ may be expressed like this:</p>
 						\begin{align}
 								f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_nx^n
 						\end{align}
@@ -206,7 +211,6 @@
 							<ul>
 								<li>Okay, bear with me!</li>
 								<li>We will precisely define Shamir Secret Sharing.</li>
-								<li>There be details coming...</li>
 							</ul>
 						</aside>
 					</section>
@@ -221,6 +225,7 @@
 						<p align="left">This is called a $(k,n)$ threshold scheme.</p>
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>The objective is to divide the secret S...</li>
 								<li>k is the threshold, i.e. the number of participants required to construct the secret..</li>
 								<li>If k=n, all participants are required to construct the secret.</li>
@@ -254,6 +259,7 @@
 						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $\mathbb{F}$ of size $Q$ where $0 < k \leq n < Q; S < Q\;$ and $Q$ is a prime number.</p>
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>Note the appearance of the prime number.</li>
 								<li>The secret must have equal likelihood of being any element of the finite field.</li>
 								<li>More on that important topic later.</li>
@@ -270,6 +276,7 @@
 						</ul>
 						<aside class="notes">
 							<ul>
+								<li>Read the slide in all of it's glory.</li>
 								<li>And here is the fine print.</li>
 								<li>a_i must be natural number less than prime modulus Q</li>
 								<li>Note the mod Q. More on that later.</li>
@@ -284,6 +291,11 @@
 							<li>Every participant is given a point, i.e. an integer input to the polynomial and the corresponding integer output.</li>
 							<li>Given any subset of $k$ of these pairs, we can find the coefficients of the polynomial. The secret is the constant term $a_0$</li>
 						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Read the slide.</li>
+							</ul>
+						</aside>
 					</section>
 				</section>
 
@@ -312,6 +324,7 @@
 
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>First degree polynomial.</li>
 								<li>How many points are necessary to describe a line?</li>
 								<li>Anyone?</li>
@@ -439,6 +452,7 @@
 						</ul>
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>Stated differently, we have less than the threshold and then greater than or equal to the threshold.</li>
 								<li>Infinite number of curves passing through k-1 points.</li>
 								<li>If j < k we cannot construct the secret.</li>
@@ -524,7 +538,7 @@
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>The Problem</h1>
-            <h3>Information Leakage</h3>
+						<h3>Information Leakage</h3>
 						<aside class="notes">
 							<ul>
 								<li>But this approach has a problem. Information leakage.</li>
@@ -538,6 +552,7 @@
 						<p align="left">She knows $f(x) = ax + b$</p>
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>In a software implementation, x, f(x), and k are encoded into each share.</li>
 								<li>This means the polynomial form is known by the shareholder.</li>
 							</ul>
@@ -548,12 +563,13 @@
 						<p align="left">She can solve for $b$ in terms of $a$.</p>
 						\begin{align}
 								f(x) &amp; = ax + b \\
-                P \rightarrow f(16) = 106  &amp; = a(16) + b \\
+								P \rightarrow f(16) = 106  &amp; = a(16) + b \\
 								b    &amp; = -16a + 106
 						\end{align}
-            <p align="left">Recall the requirement that $a,b \in \mathbb{N}$.</p>
+						<p align="left">Recall the requirement that $a,b \in \mathbb{N}$.</p>
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>So Eve now can substitute all values of a.</li>
 								<li>Eve knows the requirement a,b > 0.</li>
 							</ul>
@@ -589,6 +605,7 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>Information has leaked.</li>
 								<li>Eve has been able to gain information about the secret.</li>
 								<li>But wait..! Theres more!</li>
@@ -604,7 +621,7 @@
 				-->
 				<section data-transition="zoom-in fade-out">
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
-            <h1>The Solution</h1>
+						<h1>The Solution</h1>
 						<h3>Finite Field</h3>
 						<aside class="notes">
 							<ul>
@@ -658,6 +675,7 @@
 						<aside class="notes">
 							<ul>
 								<li>So let's compute a new point for Eve to use.</li>
+								<li>Read the slide.</li>
 								<li>Recall our secret S is 42.</li>
 								<li>Q=43 is prime</li>
 							</ul>
@@ -672,6 +690,7 @@
 						<p align="left">In other words, $m$ is a multiplier.</p>
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>This observation is axiomatic.</li>
 								<li>Let that soak in for a minute.</li>
 							</ul>
@@ -689,6 +708,7 @@
 						\end{align}\]
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>The polynomial and prime number Q are public.</li>
 								<li>Eve can approach the problem the same as before.</li>
 								<li>But f(x) mod Q can be written f(x) - Qm where m is a multiplier.</li>
@@ -724,6 +744,7 @@
 						<p align="left">The secret $S$ is equally likely to be any element of the finite field $\mathbb{F}$. No information may be learned about $S$ unless $S_1 \ldots S_k$ are known.</p>
 						<aside class="notes">
 							<ul>
+								<li>Read the slide.</li>
 								<li>The addition of the modulus of a prime number solves the information leakage problem.</li>
 								<li>Let that soak in for a moment.</li>
 								<li>Last Slide</li>
@@ -761,12 +782,12 @@
 					</section>
 				</section>
 
-				<!--
-					***
-					END
-					***
-				-->
 				<section data-transition="zoom-in fade-out">
+					<!--
+						***
+						END
+						***
+					-->
 					<section data-background="figures/gnuplot/background-title.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Shamir</h1>
 						<h1>Secret</h1>
@@ -778,14 +799,14 @@
 							</ul>
 						</aside>
 					</section>
-				</section>
 
-				<!--
-					***********
-					Venue Slide
-					***********
-				-->
-				<section data-background="images/venue.png" data-background-size="contain" data-transition="fade-in fade-out">
+					<!--
+						***********
+						Venue Slide
+						***********
+					-->
+					<section data-background="images/venue.png" data-background-size="contain" data-transition="fade-in fade-out">
+					</section>
 				</section>
 			</div>
 		</div>
