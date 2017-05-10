@@ -286,14 +286,14 @@ For our purposes we can define a polynomial as follows:
 
 \noindent
 Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an
-element in a finite field $\mathbb{F}$ of size $P$ where
-$0 < k \leq n < P; S < P$ and $P$ is a prime number.
+element in a finite field $\mathbb{F}$ of size $Q$ where
+$0 < k \leq n < Q; S < Q$ and $Q$ is a prime number.
 
 \begin{itemize}
     \item Choose at random $k-1$ positive integers $a_1, \ldots a_{k-1}$
-        with $0 < a_i < P; a_i \in \mathbb{N}$ and let $a_0 = S; S < P$.
+        with $0 < a_i < Q; a_i \in \mathbb{N}$ and let $a_0 = S; S < Q$.
     \item Build the polynomial
-        $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \mod P$
+        $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \mod Q$
     \item Construct any $n$ points, \emph{for instance}, set $i = 1, \ldots , n$
         to retrieve $(i, f(i))$.
 \end{itemize}
@@ -310,7 +310,7 @@ polynomial. The secret is the constant term $a_0$.
 \subsection{Examples}
 
 \subsubsection{The Probem}
-In this example we will omit the requirement that $\mod P$ is applied to
+In this example we will omit the requirement that $\mod Q$ is applied to
 the polynomial. \\
 
 \noindent
@@ -355,11 +355,11 @@ Therefore, Eve can conclude
 
 \subsubsection{The Solution}
 The solution is to require that $S$ is an element in a finite field $\mathbb{F}$
-of size $P$ where $S < P$ and $P$ is prime.\\
+of size $Q$ where $S < Q$ and $Q$ is prime.\\
 
 \noindent
-Since $S = 42$, choosing $P = 43$ satisfies the requirement that $S < P$ and
-$P$ is prime.
+Since $S = 42$, choosing $P = 43$ satisfies the requirement that $S < Q$ and
+$Q$ is prime.
 
 \begin{align*}
     f(x)  &= 4x + 42 \mod 43 \\
@@ -371,19 +371,19 @@ $P$ is prime.
 \noindent
 Recall from the definition of a modulus that
 
-$$a \mod P = a - Pm | 0 \leq a - pm \leq P$$
+$$a \mod Q = a - Qm | 0 \leq a - pm \leq Q$$
 
 \noindent
 In other words, $m$ is a multiplier. \\
 
 \noindent
-Eve knows $P = (16, 20)$, $f(x) = ax + b \mod P$, and modulus $P = 43$. \\
+Eve knows $P = (16, 20)$, $f(x) = ax + b \mod Q$, and modulus $Q = 43$. \\
 
 \noindent
 So she can substitute and write
 
 \begin{align}
-    f(x) &= ax + b \mod P \nonumber \\
+    f(x) &= ax + b \mod Q \nonumber \\
          &= ax + b - pm \nonumber \\
       20 &= 16a + b - 43m \nonumber \\
       b  &= -16a + 20 + 43m \label{eq21}
