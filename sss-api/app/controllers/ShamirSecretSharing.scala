@@ -1,6 +1,6 @@
 package controllers
 
-import akka.actor.ActorSystem
+import akka.actor._
 import java.util.Random
 import javax.inject._
 import org.slf4j.Logger
@@ -15,6 +15,7 @@ import scala.util.{Failure, Success, Try}
 import org.mitre.secretsharing.{Part, Secrets}
 import constants.SSSConstants
 import services.SecretRepository
+import actors.MonitorSecret
 
 // Represents the request body for split.
 case class Secret(required: Int, total: Int, secret: String)
@@ -36,6 +37,8 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
   implicit val secretFmt = Json.format[Secret]
   implicit val shareFmt = Json.format[Share]
   val logger = LoggerFactory.getLogger(classOf[ShamirSecretSharing])
+  val monitorSecretActor = actorSystem.actorOf(Props(new MonitorSecret(secretRepository)), "monitorSecret")
+  val job = actorSystem.scheduler.schedule(10.second, 10.second, monitorSecretActor, "tick")
 
   /**
    * Split a secret into shares. Expect parameters as JSON:
@@ -137,7 +140,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
   def apiThatRequiresSecret = Action.async { implicit request =>
     secretRepository.secret match {
       case Some(v) => {
-        logger.info(s"Secret is available: $v")
+        logger.info("API is ready!")
         Future(Ok)
       }
       case None => {
@@ -161,6 +164,11 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
         val share = body.as[Share]
         secretRepository.addShare(share.share) match {
           case SSSConstants.STATUS_INVALID_SHARE => Future(BadRequest)
+          case SSSConstants.STATUS_SUFFICIENT_SHARES => {
+            // Once the secret is available, stop checking.
+            job.cancel()
+            Future(Ok)
+          }
           case _ => Future(Ok)
         }
       }
