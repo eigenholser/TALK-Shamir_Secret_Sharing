@@ -14,7 +14,7 @@ import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 import org.mitre.secretsharing.{Part, Secrets}
 import constants.SSSConstants
-import services.ConstructSecret
+import services.SecretRepository
 
 // Represents the request body for split.
 case class Secret(required: Int, total: Int, secret: String)
@@ -22,7 +22,9 @@ case class Share(share: String)
 
 /**
  * This controller implements Shamir Secret Sharing methods `split` and `join`.
- * that split a secret into shares and combine shares into a secret.
+ * that split a secret into shares and combine shares into a secret. It also
+ * implements `add` and `status` as a proof of concept for how Shamir Secret
+ * Sharing might be used in practice.
  *
  * @param actorSystem We need the `ActorSystem`'s `Scheduler` to
  * run code after a delay.
@@ -30,7 +32,7 @@ case class Share(share: String)
  * asynchronous code.
  */
 @Singleton
-class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: ConstructSecret)(implicit exec: ExecutionContext) extends Controller {
+class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository: SecretRepository)(implicit exec: ExecutionContext) extends Controller {
   implicit val secretFmt = Json.format[Secret]
   implicit val shareFmt = Json.format[Share]
   val logger = LoggerFactory.getLogger(classOf[ShamirSecretSharing])
@@ -39,19 +41,23 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
    * Split a secret into shares. Expect parameters as JSON:
    *
    * POST
-   * Request Body:
+   * Response:
    * {
    *   "required": 3,           // required to recover secret.
    *   "total": 5,              // total shares to create.
    *   "secret": "The Secret!"  // The secret.
    * }
    *
-   * Response
-   * {
-   *    "secret": "THE_CONSTRUCTED_SECRET"
-   * }
+   * Response:
+   * [
+   *   "share1",
+   *   "share2",
+   *   ...,
+   *   "shareN"
+   * ]
+   *
    */
-  def split = Action.async { implicit request =>
+  def splitSecret = Action.async { implicit request =>
     request.body.asJson match {
       case Some(body) => {
         val reqBody = body.as[Secret]
@@ -79,14 +85,21 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
    * Join shares and recover secret. Expect shares as JSON array in request
    * body:
    *
+   * POST
+   * Request body:
    * [
    *   "share1",
    *   "share2",
    *   ...,
    *   "shareN"
    * ]
+   *
+   * Response:
+   * {
+   *    "secret": "The Secret!"
+   * }
    */
-  def join = Action.async { implicit request =>
+  def joinShares = Action.async { implicit request =>
     request.body.asJson match {
       case Some(body) => {
         val shares = body.as[Array[String]]
@@ -118,41 +131,35 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepo: Const
   }
 
   /**
-   * Secret status. Prototype for API requiring the secret.
+   * Prototype for an API endpoint that requires the secret to perform it's
+   * function.
    */
-  def status = Action.async { implicit request =>
-    secretRepo.sufficientShares match {
-      case true => {
-        secretRepo secret match {
-          case Success(v) => {
-            logger.info(s"Constructed secret: $v")
-            Future(Ok)
-          }
-          case Failure(e) => {
-            logger.warn(s"Failed to consstruct secret: $e")
-            Future(InternalServerError)
-          }
-        }
+  def apiThatRequiresSecret = Action.async { implicit request =>
+    secretRepository.secret match {
+      case Some(v) => {
+        logger.info(s"Secret is available: $v")
+        Future(Ok)
       }
-      case false => {
-        logger.warn("Insufficient shares to construct secret!")
+      case None => {
+        logger.warn("Insufficient shares available to construct secret!")
         Future(InternalServerError)
       }
     }
   }
 
   /**
-   * Add a share.
+   * Consent authorized by shareholder. Normally this would be authenticated.
+   * This would constitute consent by the shareholder to generating the secret.
    *
    * {
    *    "share": "THE_SHARE_TO_BE_ADDED"
    * }
    */
-  def add = Action.async { implicit request =>
+  def consentShare = Action.async { implicit request =>
     request.body.asJson match {
       case Some(body) => {
         val share = body.as[Share]
-        secretRepo.add(share.share) match {
+        secretRepository.addShare(share.share) match {
           case SSSConstants.STATUS_INVALID_SHARE => Future(BadRequest)
           case _ => Future(Ok)
         }

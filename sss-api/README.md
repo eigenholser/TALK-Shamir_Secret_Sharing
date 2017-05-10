@@ -7,31 +7,37 @@ library available [on Github](https://github.com/secretsharing/secretsharing).
 
 There are 4 API endpoints in this demo application:
 
-    /split      # Split the secret into shares.
-    /join       # Join shares and construct the secret.
-    /add        # Add a single share.
-    /status     # POC for API that requires the secret.
+    /splitSecret                # Split the secret into shares.
+    /joinShares                 # Join shares and construct the secret.
+    /consentShare               # Add a single share.
+    /apiThatRequiresSecret      # POC for API that requires the secret.
 
-The demo is broken into two parts. First is `split` and `join`. These two API
-endpoints demonstrate how we can generate shares and reconstitute the secret
-from the shares.
+The demo is broken into two parts. First is `splitSecret` and `joinShares`.
+These two API endpoints demonstrate how we can generate shares and
+reconstitute the secret from the shares.
 
 The second part is a proof of concept that demonstrates how we might implement
-a mechanism for adding shares to a service that requires a secret. This is the
-`add` API endpoinnt. The `status` endpoint represents an API that might
-require the secret to service it's requests. When the threshold of shares is
-made available via `add`, `status` will construct the secret and return it.
+a mechanism for shareholders to consent to a service that requires a secret.
+This is the `consentShare` API endpoint. The `apiThatRequiresSecret` endpoint
+represents an API that might require the secret to service it's requests. When
+the threshold of shares is made available via `consentShare`, the secret will
+be constructed and stored.
 
-The `add` API endpoint does not permit duplicate share submissions. Invalid
-shares will be rejected. Once the required number of shares are available,
-no more shares will be accepted. All shares are held in memory. The secret is
-not kept in memory aside from whatever the JVM does. The secret is
-reconstructed from the shares each time it is needed.
+The `consentShare` API endpoint does not permit duplicate share submissions.
+Invalid shares will be rejected. Once the required number of shares are
+available, no more shares will be accepted. All shares are held in memory.
+Construction of the secret will be attempted with each share addition. Once
+the secret is successfully constructed it will be stored in memory for future
+use.
 
 It is possible to submit a valid share that was not generated from the secret.
 This will break the system. Just don't do that. Perhaps in a real application,
 an API that clears all cached shares will be useful. For our purposes, a
 restart will suffice.
+
+`consentShare` in a real application would be authenticated and use TLS. The
+consent should also be logged, probably in a database rather than a logfile.
+This would represent non-repudiation of consent.
 
 
 ## Run With SBT
@@ -55,13 +61,13 @@ just to see that it works.
 To demonstrate the secret reconstruction for the proof of concept API:
 
     cd demo
-    sh status.sh    # See log messages.
-    sh add-1.sh     # ...
-    sh add-2.sh
-    sh status.sh
-    sh add-INVALID.sh
-    sh add-3.sh
-    sh status.sh
+    sh apiThatRequiresSecret.sh    # See log messages.
+    sh consentShare-1.sh     # ...
+    sh consentShare-2.sh
+    sh apiThatRequiresSecret.sh
+    sh consentShare-INVALID.sh
+    sh consentShare-3.sh
+    sh apiThatRequiresSecret.sh
 
 Note the log messages along the way. Mix up the shell scripts however you like.
 
