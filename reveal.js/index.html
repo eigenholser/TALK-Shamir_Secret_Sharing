@@ -252,7 +252,7 @@
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
-						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $\mathbb{F}$ of size $P$ where $0 < k \leq n < P; S < P\;$ and $P$ is a prime number.</p>
+						<p align="left">Suppose we want to use a $(k,n)$ threshold scheme to share our secret $S$, an element in a finite field $\mathbb{F}$ of size $Q$ where $0 < k \leq n < Q; S < Q\;$ and $Q$ is a prime number.</p>
 						<aside class="notes">
 							<ul>
 								<li>Note the appearance of the prime number.</li>
@@ -265,15 +265,15 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<ul>
-              <li>Choose at random $k-1$ positive integers $a_1,\ldots,a_{k-1}$ with 0 &lt; $a_i &lt; P; a_i \in \mathbb{N}$ and let $a_0 = S; S < P$</li>
-							<li>Build the polynomial $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \mod P$</li>
+              <li>Choose at random $k-1$ positive integers $a_1,\ldots,a_{k-1}$ with 0 &lt; $a_i &lt; Q; a_i \in \mathbb{N}$ and let $a_0 = S; S < Q$</li>
+							<li>Build the polynomial $f(x) = a_0 + a_1x + a_2x^2 + \ldots + a_{k-1}x^{k-1} \mod Q$</li>
 							<li>Construct any $n$ points, <em>for instance</em>, set $i=1,\ldots,n$ to retrieve $(i,f(i))$</li>
 						</ul>
 						<aside class="notes">
 							<ul>
 								<li>And here is the fine print.</li>
-								<li>a_i must be natural number less than prime modulus P</li>
-								<li>Note the mod P. More on that later.</li>
+								<li>a_i must be natural number less than prime modulus Q</li>
+								<li>Note the mod Q. More on that later.</li>
 								<li>Note that we may choose any x for f(x).</li>
 							</ul>
 						</aside>
@@ -616,7 +616,7 @@
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>The Solution</h1>
-						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $P$ where $S \lt P$ and $P$ is prime.</p>
+						<p align="left">The solution is to require that $S$ is an element in a finite field $\mathbb{F}$ of size $Q$ where $S \lt Q$ and $Q$ is prime.</p>
 						<aside class="notes">
 							<ul>
 								<li>Read the slide.</li>
@@ -628,8 +628,8 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-out">
 						<h1>Finite Fields</h1>
 						<ul>
-							<li>The simplest example is a finite field of size $P$, where $P$ is a prime number, that may be constructed as integers modulo $P$.</li>
-							<li>The elements of such a field may be represented by integers in the range $0,\ldots,P − 1$.</li>
+							<li>The simplest example is a finite field of size $Q$, where $Q$ is a prime number, that may be constructed as integers modulo $Q$.</li>
+							<li>The elements of such a field may be represented by integers in the range $0,\ldots,Q − 1$.</li>
 						</ul>
 						<aside class="notes">
 							<ul>
@@ -649,7 +649,7 @@
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">Since $S=42$, choosing $P=43$ satisfies the requirement that $S \lt P$ and $P$ is prime.</p>
+						<p align="left">Since $S=42$, choosing $Q=43$ satisfies the requirement that $S \lt Q$ and $Q$ is prime.</p>
 						\[\begin{align}
 								f(x)  &amp; = 4x + 42 \mod 43 \\
 								f(16) &amp; = 4(16) + 42 \mod 43 \\
@@ -660,7 +660,7 @@
 							<ul>
 								<li>So let's compute a new point for Eve to use.</li>
 								<li>Recall our secret S is 42.</li>
-								<li>P=43 is prime</li>
+								<li>Q=43 is prime</li>
 							</ul>
 						</aside>
 					</section>
@@ -668,7 +668,7 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Recall from the definition of a modulus that</p>
 						\begin{align}
-							a \mod P = a - Pm \mid 0 \leq a - pm \leq P \\
+							a \mod Q = a - Qm \mid 0 \leq a - pm \leq Q \\
 						\end{align}
 						<p align="left">In other words, $m$ is a multiplier.</p>
 						<aside class="notes">
@@ -680,19 +680,19 @@
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
-						<p align="left">Eve knows $P=(16,20)$, $f(x) = ax + b \mod P$, and modulus $P=43$.</p>
+						<p align="left">Eve knows $P=(16,20)$, $f(x) = ax + b \mod Q$, and modulus $Q=43$.</p>
 						<p align="left">So she can substitute and write:</p>
 						\[\begin{align}
-								f(x) &amp; = ax + b \mod P \\
+								f(x) &amp; = ax + b \mod Q \\
 								     &amp; = ax + b - pm \\
 								20   &amp; = 16a + b - 43m \\
 								b    &amp; = -16a + 20 + 43m
 						\end{align}\]
 						<aside class="notes">
 							<ul>
-								<li>The polynomial and prime number P are public.</li>
+								<li>The polynomial and prime number Q are public.</li>
 								<li>Eve can approach the problem the same as before.</li>
-								<li>But f(x) mod P can be written f(x) - Pm where m is a multiplier.</li>
+								<li>But f(x) mod Q can be written f(x) - Qm where m is a multiplier.</li>
 								<li>m is unknown to Eve.</li>
 							</ul>
 						</aside>
