@@ -8,10 +8,10 @@ import org.mitre.secretsharing.{Part, Secrets}
 import constants.SSSConstants
 
 @Singleton
-class ConstructSecret {
+class SecretRepository {
+  val logger = LoggerFactory.getLogger(classOf[SecretRepository])
   private val shares = scala.collection.mutable.ArrayBuffer.empty[String]
-  val logger = LoggerFactory.getLogger(classOf[ConstructSecret])
-  var sufficientShares = false
+  var secret = None: Option[String]
 
   /**
    * Add a single share. Test for validity by instantiating a new Part(). Do
@@ -21,25 +21,27 @@ class ConstructSecret {
    * @param share String
    * @return code Int
    */
-  def add(share: String): Int = {
-    sufficientShares match {
-      case true => SSSConstants.STATUS_SUFFICIENT_SHARES
-      case false => {
-        logger.warn("If this were a real application we would not be logging the shares!")
+  def addShare(share: String): Int = {
+    secret match {
+      case Some(_) => SSSConstants.STATUS_SUFFICIENT_SHARES
+      case None => {
+        logger.warn("If this were a real application we would not be logging the shares or the secret!")
         Try(new Part(share)) match {
           case Success(_) => {
             if (!shares.contains(share)) {
               logger.info(s"Adding share $share")
               shares += share
             } else {
-              logger.warn(s"This share already added: $share")
+              logger.warn(s"Nothing done, this share was previously added: $share")
             }
-            secret match {
-              case Success(_) => {
-                sufficientShares = true
+            constructSecret match {
+              case Success(v) => {
+                secret = Option(v)
+                logger.info(s"Successfully generated secret: $v")
                 SSSConstants.STATUS_SUFFICIENT_SHARES
               }
               case Failure(_) => {
+                logger.warn("Insufficient shares available to generate secret.")
                 SSSConstants.STATUS_INSUFFICIENT_SHARES
               }
             }
@@ -58,9 +60,8 @@ class ConstructSecret {
    * Construct the secret from available shares. If it fails, our shares are
    * not all available or are incorrect.
    */
-  def secret(): Try[String] = Try {
-    val parts = scala.collection.mutable.ArrayBuffer.empty[Part]
-    (for (share <- shares) yield new Part(share)) map {x => parts += x}
-    new String(Secrets.join(parts.toArray).map(_.toChar))
+  def constructSecret(): Try[String] = Try {
+    val parts = for (share <- shares.toArray) yield new Part(share)
+    new String(Secrets.join(parts).map(_.toChar))
   }
 }
