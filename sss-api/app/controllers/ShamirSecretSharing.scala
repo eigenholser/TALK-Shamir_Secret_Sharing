@@ -77,9 +77,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
       }
       case None => {
         logger.warn("Bad request")
-        val userMessage = "Bad request"
-        val result = Json.obj("status" -> "failure", "data" -> userMessage)
-        Future(BadRequest(result))
+        Future(BadRequest)
       }
     }
   }
@@ -119,16 +117,14 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
             val msg = s"Unable to reconstitute secret: ${e.getMessage}"
             logger.error(msg)
             // XXX: Including exception message may leak data.
-            val result = Json.obj("status" -> "failure", "data" -> msg)
+            val result = Json.obj("error" -> msg)
             Future(BadRequest(result))
           }
         }
       }
       case None => {
         logger.warn("Bad request")
-        val msg = "Bad request"
-        val result = Json.obj("status" -> "failure", "data" -> msg)
-        Future(BadRequest(result))
+        Future(BadRequest)
       }
     }
   }
