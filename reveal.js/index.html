@@ -42,8 +42,10 @@
 					<h1>Sharing</h1>
 					<aside class="notes">
 						<ul>
+							<li>Microphone volume.</li>
+							<li>Speaker Volume. Cool kids in the back.</li>
 							<li>Introduction</li>
-							<li>Start with a demo.</li>
+							<li>We'll begin with a demo.</li>
 							<li>Explore the mathematics behind Shamir Secret Sharing.</li>
 						</ul>
 					</aside>
@@ -67,7 +69,7 @@
 								<li>Join 5 shares: <pre>sh join.sh</pre></li>
 								<li>Join 3 shares.</li>
 								<li>Join 2 shares. Note failure.</li>
-								<li>Consider system design that requires shareholder "consent" to become functional.</li>
+								<li>So what...?</li>
 							</ul>
 						</aside>
 					</section>
@@ -84,7 +86,7 @@
 								<li>API endpoint for share submission.</li>
 								<li>API endpoint dependent on secret.</li>
 								<li>Application starts normally. Secret-dependent API does not work until threshold shares have been submitted.</li>
-								<li>Shares are cached in memory. Secret is computed on demand. Secret is never cached. JVM notwithstanding.</li>
+								<li>Shares are cached in memory. Secret is computed when sufficient shares are available.</li>
 								<li>Go through the sequence of shell scripts to demo status, add partial, add invalid, and finally add threshold. Then check status again.</li>
 							</ul>
 						</aside>
