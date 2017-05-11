@@ -38,7 +38,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
   implicit val shareFmt = Json.format[Share]
   val logger = LoggerFactory.getLogger(classOf[ShamirSecretSharing])
   val monitorSecretActor = actorSystem.actorOf(Props(new MonitorSecret(secretRepository)), "monitorSecret")
-  val job = actorSystem.scheduler.schedule(2.second, 2.second, monitorSecretActor, "tick")
+  val job = actorSystem.scheduler.schedule(0.second, 5.second, monitorSecretActor, "tick")
 
   /**
    * Split a secret into shares. Expect parameters as JSON:
