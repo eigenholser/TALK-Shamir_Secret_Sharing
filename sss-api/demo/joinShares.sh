@@ -1,5 +1,6 @@
 curl \
     -X POST \
+    --verbose \
     --silent \
     -H "Content-Type: application/json" \
     -d "`cat shares.json`" \

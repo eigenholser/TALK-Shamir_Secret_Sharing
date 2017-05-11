@@ -115,8 +115,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
             val msg = s"Unable to reconstitute secret: ${e.getMessage}"
             logger.error(msg)
             // XXX: Including exception message may leak data.
-            val result = Json.obj("error" -> msg)
-            Future(BadRequest(result))
+            Future(BadRequest(Json.obj("message" -> msg)))
           }
         }
       }
@@ -134,12 +133,14 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
   def apiThatRequiresSecret = Action.async { implicit request =>
     secretRepository.secret match {
       case Some(v) => {
-        logger.info("API is ready!")
-        Future(Ok)
+        val msg = "API is ready!"
+        logger.info(msg)
+        Future(Ok(Json.obj("message" -> msg)))
       }
       case None => {
-        logger.warn("API not ready! Secret not available!")
-        Future(InternalServerError)
+        val msg = "API not ready! Secret not available!"
+        logger.warn(msg)
+        Future(InternalServerError(Json.obj("message" -> msg)))
       }
     }
   }
@@ -157,13 +158,20 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
       case Some(body) => {
         val share = body.as[Share]
         secretRepository.addShare(share.share) match {
-          case SSSConstants.STATUS_INVALID_SHARE => Future(BadRequest)
+          case SSSConstants.STATUS_INVALID_SHARE => {
+            val msg = "Share submitted is not valid."
+            Future(BadRequest(Json.obj("message" -> msg)))
+          }
           case SSSConstants.STATUS_SUFFICIENT_SHARES => {
             // Once the secret is available, stop checking.
             job.cancel()
-            Future(Ok)
+            val msg = "The secret has been constructed."
+            Future(Ok(Json.obj("message" -> msg)))
           }
-          case _ => Future(Ok)
+          case _ => {
+            val msg = "Consent granted with share submission."
+            Future(Ok(Json.obj("message" -> msg)))
+          }
         }
       }
       case None => {
