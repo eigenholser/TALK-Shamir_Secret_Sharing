@@ -109,6 +109,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
         ) yield new Part(share)
         Try(new String(Secrets.join(parts).map(_.toChar))) match {
           case Success(secret) => {
+            logger.info(s"Successfully constructed secret: $secret")
             Future(Ok(Json.obj("secret" -> secret)))
           }
           case Failure(e) => {
