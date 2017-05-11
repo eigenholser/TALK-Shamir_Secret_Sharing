@@ -41,6 +41,7 @@
 						<aside class="notes">
 							<p>Preflight checklist:</p>
 							<ul>
+								<li>Got the laser pointer?</li>
 								<li>Setup terminals for demo.</li>
 								<li>Lights.</li>
 								<li>Microphone volume.</li>
@@ -237,6 +238,11 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<h3>Shamir Secret Sharing</h3>
 						<p align="left">The essential idea is that $k$ points are required to define a polynomial of degree $k-1$.</p>
+						<aside class="notes">
+							<ul>
+								<li>Read the slide.</li>
+							</ul>
+						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
@@ -248,7 +254,7 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
-								<li>Note that we slightly tweeked the representation of the polynomial to include the threshold.</li>
+								<li>Note that we slightly tweeked the definition of the polynomial to be in terms of the threshold rather than degree.</li>
 								<li>Where k is the threshold.</li>
 								<li>The degree of the polynomial is k-1.</li>
 							</ul>
@@ -295,6 +301,7 @@
 						<aside class="notes">
 							<ul>
 								<li>Read the slide.</li>
+								<li>So there you have it...</li>
 							</ul>
 						</aside>
 					</section>
@@ -455,7 +462,7 @@
 							<ul>
 								<li>Read the slide.</li>
 								<li>Stated differently, we have less than the threshold and then greater than or equal to the threshold.</li>
-								<li>Infinite number of curves passing through k-1 points.</li>
+								<li>An infinite number of curves pass through k-1 points.</li>
 								<li>If j < k we cannot construct the secret.</li>
 								<li>If j >= k we can construct the secret.</li>
 							</ul>
@@ -466,7 +473,7 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Infinite number of linear polynomials intersect this point.</li>
+								<li>Infinite number of linear polynomials contain this point.</li>
 								<li>What happens if we specify a second point?</li>
 							</ul>
 						</aside>
@@ -485,7 +492,7 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Infinite number of quadratic polynomials intersect these two points.</li>
+								<li>Infinite number of quadratic polynomials contain these two points.</li>
 								<li>What happens if we specify a third point?</li>
 							</ul>
 						</aside>
@@ -514,7 +521,7 @@
 						<!-- Just the background here -->
 						<aside class="notes">
 							<ul>
-								<li>Infinite number of cubic polynomials intersect these three points.</li>
+								<li>Infinite number of cubic polynomials contain these three points.</li>
 								<li>What happens of we specify a fourth point?</li>
 							</ul>
 						</aside>
@@ -673,6 +680,7 @@
 								      &amp; = 106 \mod 43 \\
 								f(16) &amp; = 20
 						\end{align}\]
+						<p align="left">The share is $P=(16,20)$.</p>
 						<aside class="notes">
 							<ul>
 								<li>So let's compute a new point for Eve to use.</li>
@@ -686,24 +694,24 @@
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Recall from the definition of a modulus that</p>
 						\begin{align}
-							a \mod Q = a - Qm \mid 0 \leq a - pm \leq Q \\
+							a \mod Q = a - Qm \mid 0 \leq a - Qm \leq Q \\
 						\end{align}
 						<p align="left">In other words, $m$ is a multiplier.</p>
 						<aside class="notes">
 							<ul>
 								<li>Read the slide.</li>
 								<li>This observation is axiomatic.</li>
-								<li>Let that soak in for a minute.</li>
+								<li>We will use that definition in a moment.</li>
 							</ul>
 						</aside>
 					</section>
 
 					<section data-background="figures/gnuplot/background-default.png" data-background-size="contain" data-transition="fade-in fade-out">
 						<p align="left">Eve knows $P=(16,20)$, $f(x) = ax + b \mod Q$, and modulus $Q=43$.</p>
-						<p align="left">So she can substitute and write:</p>
+						<p align="left">So she can substitute the values and solve for $b$:</p>
 						\[\begin{align}
 								f(x) &amp; = ax + b \mod Q \\
-								     &amp; = ax + b - pm \\
+								     &amp; = ax + b - Qm \\
 								20   &amp; = 16a + b - 43m \\
 								b    &amp; = -16a + 20 + 43m
 						\end{align}\]
@@ -711,9 +719,9 @@
 							<ul>
 								<li>Read the slide.</li>
 								<li>The polynomial and prime number Q are public.</li>
-								<li>Eve can approach the problem the same as before.</li>
 								<li>But f(x) mod Q can be written f(x) - Qm where m is a multiplier.</li>
 								<li>m is unknown to Eve.</li>
+								<li>As before, Eve can try all values of a.</li>
 							</ul>
 						</aside>
 					</section>
@@ -731,11 +739,10 @@
 						\end{align}
 						<aside class="notes">
 							<ul>
-								<li>See how Eve cannot gain any information about the secret?</li>
-								<li>This time, no information is leaked.</li>
+								<li>This time Eve cannot gain any information about the secret? No information is leaked.</li>
 								<li>m is still unknown.</li>
 								<li>k shares are required to discover the value of m.</li>
-								<li>But we know a=4 so we can see that -44 + 43m satisfies our equation.</li>
+								<li>But <em>we</em> know a=4 so we can see that -44 + 43m satisfies our equation.</li>
 								<li>In other words, m=2</li>
 							</ul>
 						</aside>
@@ -746,8 +753,8 @@
 						<aside class="notes">
 							<ul>
 								<li>Read the slide.</li>
-								<li>The addition of the modulus of a prime number solves the information leakage problem.</li>
-								<li>Let that soak in for a moment.</li>
+								<li>The addition of the finite field of order Q solves the information leakage problem.</li>
+								<li>Pause.</li>
 								<li>Last Slide</li>
 							</ul>
 						</aside>
@@ -759,7 +766,7 @@
 						<h1>Summary</h1>
 						<ul>
 							<li>Shamir Secret Sharing is a mathematical protocol for a $(k,n)$ threshold secret sharing scheme built on polynomials and finite field mathematics.</li>
-							<li>It can be used in an SOA architecture by enabling consenting shareholders to authorize secret generation by an application in a way that is auditable and cannot be repudiated.</li>
+							<li>We have seen how it can be used in an SOA architecture by enabling consenting shareholders to authorize secret generation by an application in a way that is auditable and cannot be repudiated.</li>
 						</ul>
 						<aside class="notes">
 							<ul>
