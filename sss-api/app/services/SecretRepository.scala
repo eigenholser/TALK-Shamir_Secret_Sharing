@@ -25,7 +25,6 @@ class SecretRepository {
     secret match {
       case Some(_) => SSSConstants.STATUS_SUFFICIENT_SHARES
       case None => {
-        logger.warn("If this were a real application we would not be logging the shares or the secret!")
         Try(new Part(share)) match {
           case Success(_) => {
             if (!shares.contains(share)) {
