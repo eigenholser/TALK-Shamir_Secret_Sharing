@@ -10,11 +10,8 @@ Talk on Shamir Secret Sharing. This repository contains:
 
 # Slides
 
-MathJax is required to view the mathematics in the slides. MathJax is in
-transition at the time of this writing with it being removed from the CDN.
-The `reveal.js` slides here use a local installation of MathJax. MathJax
-is large-ish and not included in this repository. To view the slides, download
-and extract MathJax into the `reveal.js/MathJax` directory.
+Open `reveal.js/index.html` in your browser. MathJax is now included in the
+repository because of the CDN transition. This makes the clone somewhat large.
 
 
 # Demo
