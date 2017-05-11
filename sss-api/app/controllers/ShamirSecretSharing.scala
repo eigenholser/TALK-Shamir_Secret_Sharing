@@ -140,7 +140,7 @@ class ShamirSecretSharing @Inject() (actorSystem: ActorSystem, secretRepository:
         Future(Ok)
       }
       case None => {
-        logger.warn("Insufficient shares available to construct secret!")
+        logger.warn("API not ready! Secret not available!")
         Future(InternalServerError)
       }
     }
